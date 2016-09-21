@@ -8,7 +8,7 @@ A site to manage your Bookmarks in a new way :3
 - Order them in a grid
 - Share your bookmarks with other bookmarko users
 - Give each bookmark a catagory
-[Preview](https://github.com/dark13258/bookmarko/blob/master/preview/preview.gif)
+[![Preview](https://github.com/dark13258/bookmarko/blob/master/preview/preview.gif "Preview")]
 
 ## Donate
 
