@@ -18,9 +18,9 @@ Help me to pay my coffee
 
 ## Creator
 
-### Gobie Nanthakukar - Development, Design
+### Gobie Nanthakumar - Development and Design
 
-- [Facebook - Gobie](https://www.facebook.com/gobie.na)
+- [Facebook](https://www.facebook.com/gobie.na)
  
 ## License
 
