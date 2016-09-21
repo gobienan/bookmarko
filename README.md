@@ -14,7 +14,7 @@ A site to manage your Bookmarks in a new way :3
 Help me to pay my coffee
 ### PayPal
 
-[![PayPal](https://raw.githubusercontent.com/deweyapp/dewey-website/master/docs/images/donate.png "PayPal Donation")](paypal.me/GobieNa)
+[![PayPal](https://raw.githubusercontent.com/deweyapp/dewey-website/master/docs/images/donate.png "PayPal Donation")](https://paypal.me/GobieNa)
 
 ## Creator
 
