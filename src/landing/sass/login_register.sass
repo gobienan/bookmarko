@@ -1,0 +1,186 @@
+.login,.register
+  width: 550px
+  height: 85vh
+  max-height: 850px
+  min-height: 750px
+  background: linear-gradient(to bottom, #3a4a5e 0%,$color_6 100%)
+  position: absolute
+  right: 0px
+  top: -25px
+  border-top-right-radius: 10px
+  border-bottom-right-radius: 10px
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  &.login
+    z-index: -1
+  .content
+    display: flex
+    width: 80%
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    transition: all .3s ease
+    padding-bottom: 20px
+    form
+      width: 100%
+    h3
+      color: rgba(white,.8)
+      font-weight: 700
+      font-size: 18px
+      text-align: center
+      padding-bottom: 50px
+  .button
+    width: 80%
+    height: 40px
+    display: flex
+    margin: 0 auto
+    justify-content: center
+    align-items: center
+    font-weight: bold
+    transition: all .3s ease-in-out
+    position: relative
+    background-color: $color_3
+    color: white
+    padding: 5px
+    padding-left: 20px
+    border-radius: 5px
+    &:hover
+      background-color: rgba($color_3,0.8)
+      color: white
+  input[type="checkbox"]
+    border: solid 1px white
+  input[type="submit"]
+    position: absolute
+    width: 100%
+    height: 100%
+    top: 0
+    left: 0
+    opacity: 0
+    cursor: pointer
+    z-index: 1
+    color: $color_6
+  .row
+    width: 100%
+    overflow: hidden
+    margin: 10px auto
+    padding: 1px
+    &.flex
+      display: flex
+      justify-content: space-around
+      align-items: center
+      align-self: stretch
+    &.back
+      left: 0
+      bottom: 0
+      margin-bottom: 0px
+      margin-top: 0px
+      padding: 0
+      transition: all .3s ease-in-out
+      color: white
+      text-align: center
+      font-size: 13px
+      padding: 15px 0
+      a
+        font-weight: 700
+        color: rgba(white,0.9)
+        text-transform: none
+        text-decoration: underline
+    .col
+      width: 40%
+      margin: 0 auto
+      font-size: 14px
+      color: rgba(white,0.7)
+      text-align: center
+  .rememberMe
+    padding-left: 20px
+    float: left
+    cursor: pointer
+  .forgotPassword
+    float: right
+    padding-right: 20px
+  .input
+    border-radius: 5px
+    height: 70px
+    display: flex
+    align-items: baseline
+    padding: 5px
+    width: 80%
+    margin: 0 auto
+    overflow: hidden
+    position: relative
+    .bubble
+      display: none
+      position: absolute
+      bottom: 0px
+      left: 50px
+      padding: 5px 20px
+      background: white
+      border-radius: 5px
+      font-size: 12px
+      font-weight: 700
+      z-index: 99
+      color: $color_2
+      text-transform: capitalize
+      &::before
+        position: absolute
+        width: 0
+        height: 0
+        top: -6px
+        left: 5px
+        border-style: solid
+        border-width: 0 5px 6px 5px
+        border-color: transparent transparent white transparent
+        display: block
+        content: ""
+    i
+      margin-right: 10px
+      color: white
+    &.incorrect
+      border-width: 2px
+      border-color: rgba($button_color_cancel_hover,.5)
+    &.correct
+      border-width: 2px
+      border-color: $color_3
+    input
+      width: 100%
+      color: white
+      font-size: 16px
+      outline: none
+      border: none
+      padding: 10px 20px
+      border-bottom: solid 1px rgba(white, .2)
+      position: relative
+      background: linear-gradient(to bottom, rgba(255,255,255,0) 94%, $color_3 4%)
+      background-position: -340px 2px
+      background-size: 100% 100%
+      background-repeat: no-repeat
+      transition: all 0.3s cubic-bezier(.64,.09,.08,1)
+      &:focus, &:valid
+        box-shadow: none
+        outline: none
+        background-position: 0 2px
+      &:invalid
+        box-shadow: none
+    ::-webkit-input-placeholder
+      text-transform: uppercase
+      color: rgba(white,.6)
+      font-size: 13px
+    ::-moz-placeholder
+      color: rgba(white,.8)
+      font-size: 13px
+      text-transform: uppercase
+  .response
+    background-color: $color_8
+    position: absolute
+    bottom: 50px
+    padding: 10px 28px
+    color: rgba(black,.7)
+    font-weight: 700
+    text-align: center
+    display: none
+    font-size: 14px
+    box-shadow: 2px 2px 50px 2px rgba(0, 0, 0, .2)
+    left: 50%
+    transform: translate(-50%,0)

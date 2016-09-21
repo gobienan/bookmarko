@@ -1,0 +1,188 @@
+doctype html
+html
+    include ./includes/head_landing.jade
+    body
+        #preload-01
+        #preload-02
+        #preload-03
+        #preload-04
+        #preload-05
+        #preload-06
+        #preload-07
+        #preload-08
+        #preload-09
+        #preload-10
+        .cookieAlert
+          p Bookmarko is using cookies to give you the best experience.
+          input(type="button" onclick="removeCookieAlert()" value="got it") 
+        .container
+          .wrapper
+              .titel
+                  h1 bookmarko
+              ul.switch
+                  li.active
+                      a(href="#")#signUpSwitch
+                          span(data-letters="Sign Up") Sign Up
+                  li 
+                      a(href="#")#signInSwitch
+                          span(data-letters="Sign In") Sign In
+              ul.sections
+                  li.page.active#pos_0(pos="0")
+                      section#landingpage
+                          .headline
+                              h1 manage your bookmarks in a 
+                                  #fancy new way
+                                  #subline Customize. Access. Share
+                          .content
+                            .squere.big#one
+                            .squere#two
+                            .squere.wide#three
+                            .squere.wide#four
+                            .squere#five
+                            .squere.wide#six
+                            .squere.big#seven
+                            .squere#eight
+                            .squere.big#nine
+                            .squere.wide#ten
+                  li.page#pos_1(pos="1")
+                      section#customize
+                        .headline
+                            h1
+                              #fancy Customize
+                              #subline Change thumbnail, position, size or category. <br>Personalize and make it work the way you do.
+                        .content.grid-stack
+                          .grid-stack-item(data-gs-width="2" data-gs-height="2")
+                            .grid-stack-item-content.squere.big#one
+                          .grid-stack-item(data-gs-width="1" data-gs-height="1")
+                            .grid-stack-item-content.squere#two
+                          .grid-stack-item(data-gs-width="2" data-gs-height="1")
+                            .grid-stack-item-content.squere.wide#three
+                          .grid-stack-item(data-gs-width="2" data-gs-height="1")
+                            .grid-stack-item-content.squere.wide#four
+                          .grid-stack-item(data-gs-width="1" data-gs-height="1")
+                            .grid-stack-item-content.squere#five
+                          .grid-stack-item(data-gs-width="2" data-gs-height="1")
+                            .grid-stack-item-content.squere.wide#six
+                          .grid-stack-item(data-gs-width="2" data-gs-height="2")
+                            .grid-stack-item-content.squere.big#seven
+                          .grid-stack-item(data-gs-width="1" data-gs-height="1")
+                            .grid-stack-item-content.squere#eight
+                          .grid-stack-item(data-gs-width="2" data-gs-height="2")
+                            .grid-stack-item-content.squere.big#nine
+                          .grid-stack-item(data-gs-width="2" data-gs-height="1")
+                            .grid-stack-item-content.squere.wide#ten
+                  li.page#pos_2(pos="2")
+                      section#access
+                        .headline
+                            h1
+                              #fancy Access
+                              #subline Your bookmarks available everywhere <br>At home, work, school, university or wherever yout want.<br>Across all browsers.
+                        .content
+                          ul.browsers
+                            li.browser.active#chrome
+                                img(src="../img/browsers/chrome.png")
+                            li.browser#firefox
+                                img(src="../img/browsers/firefox.png")
+                            li.browser#safari
+                                img(src="../img/browsers/safari.png")
+                            li.browser#opera
+                                img(src="../img/browsers/opera.png")
+                            li.browser#ie
+                                img(src="../img/browsers/ie.png")
+                            li.browser#browser
+                                img(src="../img/browsers/browser.png")
+                  li.page#pos_3(pos="3")
+                      section#share
+                        .headline
+                            h1
+                              #fancy Share
+                              #subline Simply share your bookmarks with everyone.
+                        .content
+                            .export
+                              i(class="fa fa-share-alt" aria-hidden="true")
+                            ul.instruction
+                              li#exportMessage
+                                p Make a link and send it to your familiy, your frinds, coworkers or some stranger
+                              li#importMessage
+                                p They can import the link...
+                              li#finalMessage
+                                p ...to get the bookmarks you shared, with the same order, size, category and thumbnail
+                            .browser#browser
+                                .import
+                                  i(class="fa fa-download" aria-hidden="true")
+                                img(src="../img/browsers/browser.png")
+                                .squere.big#one
+                                .squere#two
+                                .squere.wide#three 
+                                .category
+                                  .titel Social
+
+                ul.navigation
+                    li(pos="0").active Home 
+                    li(pos="1") Customize
+                    li(pos="2") Access
+                    li(pos="3") Share
+              .login
+                  .content#form_login
+                      .subline
+                          h3 Login to your dashboard
+                      .row
+                          .input
+                              .bubble#mailWarning
+                              .icon
+                                  i(class="fa fa-envelope-o" aria-hidden="true")
+                              input(id="mail" name="mail" type="email" placeholder="Your Email" required)
+                      .row
+                          .input
+                              .bubble#passwordWarning
+                              .icon
+                                  i(class="fa fa-unlock-alt" aria-hidden="true")
+                              input(id ="password" name="password" type="Password" placeholder="Your Password" required)
+                      .row.flex
+                          .col
+                              .rememberMe
+                                  <input type="checkbox" id="remember_me" checked>
+                                  <label for="remember_me"> Remember me</label>
+                          .col 
+                              .forgotPassword Forgot password ?
+                      .row
+                          .button Sign In
+                              input(type="submit" id="submit_login")
+                  .response
+                  .row.back Don't have an account? 
+                      a(href="#")#signUp Sign Up
+              .register
+                  .content#form_register
+                      .subline
+                          h3 Welcome, please fill in your basic information
+                      .row
+                          .input
+                              .bubble#mailWarning
+                              .icon
+                                  i(class="fa fa-envelope-o" aria-hidden="true")
+                              input(id="mail" name="mail" type="email" placeholder="Your Email" required)
+                      .row
+                          .input
+                              .bubble#passwordWarning
+                              .icon
+                                  i(class="fa fa-unlock-alt" aria-hidden="true")
+                              input(id ="password" name="password" type="Password" placeholder="Your Password" required)
+                      .row
+                          .input
+                              .bubble#passwordRepeatWarning
+                              .icon
+                                  i(class="fa fa-check" aria-hidden="true")
+                              input(id ="repeat_password" name="repeat_password" type="Password" placeholder="Confirm Your Password" required)
+                      .row
+                          .button Sign Up
+                              input(type="submit" id="submit_register")
+                  .response
+                  .row.back Already have an account? 
+                      a(href="#")#signIn Sign In
+        .registerMessage
+        footer
+          .footerContent
+            .copyright
+              p © 2016 bookmarko.me | All Rights Reserved.
+            .madeBy
+              p Made by  <b>Gobie Nanthakumar</b>

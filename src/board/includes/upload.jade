@@ -1,0 +1,14 @@
+.window.upload.hidden
+  .content
+    .header
+      .titel
+        p Upload your thumbnail
+    .close
+      i(class="fa fa-times" aria-hidden="true")
+      input(type="button" onclick="closeUploadWindow()")
+    form(id="upload" method="post" action="../php/upload.php" enctype="multipart/form-data")
+      .dragDrop#drop
+        h1 Drag & Drop
+        .browse or choose file
+          input(type="file" value="or choose file" name="upl" multiple)
+      ul

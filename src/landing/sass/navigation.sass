@@ -1,0 +1,16 @@
+ul.navigation
+  margin: 0
+  padding: 0
+  position: absolute
+  list-style: none
+  display: flex
+  bottom: 10px
+  left: calc(-10px + 550px  / 4)
+  //transform: translate( calc(550px / 4) ,0)
+  li
+    margin: 10px
+    display: flex
+    cursor: pointer
+    color: darken($color_3, 20%)
+    &.active
+      font-weight: 700

@@ -1,0 +1,78 @@
+doctype html
+html
+    include ./includes/head_landingpage.jade
+    body
+        section#landingpage
+            .header
+                .logo 
+                    h2 bookmarko
+                nav
+                    ul
+                        li 
+                            a(href="#")
+                                span(data-letters="home") home
+                        li 
+                            a(href="#")
+                                span(data-letters="features") features
+                        li 
+                            a(href="./register")
+                                span(data-letters="register") register
+                        li#login Sign In
+                            a(href="./login")
+                          
+            .landing_text
+                .headline
+                    h1 manage your bookmarks in a 
+                        #fancy fancy way
+                        #subline Customize. Access. Share
+            .input#getStarted
+                .icon
+                    i(class="fa fa-envelope-o" aria-hidden="true")
+                input(id="email" type="email" placeholder="Your Email Address")
+                .button.register start free
+                    input(type="button" onclick="preRegister()")
+        section#access
+            article
+                .row
+                    .headline
+                        h1 Across all browsers
+                    p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    ul#browser_logos
+                        li
+                            img(src="./img/browser_logos/chrome.png")
+                        li
+                            img(src="./img/browser_logos/firefox.png")
+                        li
+                            img(src="./img/browser_logos/safari.png")
+                        li
+                            img(src="./img/browser_logos/opera.png")
+                        li
+                            img(src="./img/browser_logos/ie.png")
+        section#customize
+            article.second
+                .row
+                    .col
+                        .headline
+                            h1 Customize your dashboard
+                        p Fast and easy to use. Simply change icons, sizes, positions and categories. Make the important things pop.
+                    .col
+                        .app
+        section#share
+            article
+                .row
+                    .headline
+                        h1 Sharing bookmarks was never so simple
+                    p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        section#register
+            article
+                .row
+                    .headline
+                        h1 Start using your bookmarks in a new way!
+                    p Give it a try, you will love it <3
+                    .input
+                        .icon
+                            i(class="fa fa-envelope-o" aria-hidden="true")
+                        input(id="email" type="email" placeholder="Your Email Address")
+                        .button.register join us
+                            input(type="button" onclick="preRegister()")
+            footer Copyright 2016 Bookmarko | All rights reserved.

@@ -1,0 +1,34 @@
+doctype html
+html
+    include ./includes/head_register.jade
+    body
+      .wrapper
+        .content#register
+          .headline
+            a(href="../")
+              i(class="fa fa-arrow-left" aria-hidden="true")
+            h1 bookmarko
+          .subline
+            h3 Welcome, please fill in your basic information
+          .row
+            .input
+              .icon
+                i(class="fa fa-envelope-o" aria-hidden="true")
+              input(id="mail" name="mail" type="email" placeholder="Your Email" required)
+          .row
+            .input
+              .icon
+                i(class="fa fa-unlock-alt" aria-hidden="true")
+              input(id ="password" name="password" type="Password" placeholder="Your Password" required)
+          .row
+            .input
+              .icon
+                i(class="fa fa-check" aria-hidden="true")
+              input(id ="repeat_password" name="repeat_password" type="Password" placeholder="Confirm Your Password" required)
+          .row
+            .button Sign Up
+              input(type="submit" id="submit_register")
+            .response
+        .row.back Already have an account? 
+          a(href="../login/") Sign In
+    include ./includes/script_register.jade

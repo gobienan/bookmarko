@@ -1,0 +1,13 @@
+.upload
+  .content
+    .header
+      .titel
+        p Select your thumbnail
+    .close
+      i(class="fa fa-times" aria-hidden="true")
+      input(type="button" onclick="closeSearchImgWindow()")
+    .input
+      input(id="search_img" type="text" placeholder="Search..." autofocus)
+      .save upload
+        input(type="button" onclick="upload()")
+    ul#thumbnails

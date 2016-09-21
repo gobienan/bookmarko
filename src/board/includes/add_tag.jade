@@ -1,0 +1,12 @@
+.add_tag_window.hidden
+  .content
+    .header
+      .titel
+        p Add Tags
+    .close
+      i(class="fa fa-times" aria-hidden="true")
+      input(type="button" onclick="closeAddTagWindow()")        
+    .input
+      input(id="tags" type="text" placeholder="Seperate multiple tags with a comma" autofocus)
+      .save add
+        input(type="button" onclick="addTags()")

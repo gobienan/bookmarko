@@ -1,0 +1,102 @@
+.wrapper
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%,-50%)
+  width: 90vw
+  max-width: 850px
+  max-height: 800px
+  min-height: 500px
+  box-shadow: 10px 10px 80px 20px rgba(0, 0, 0, .3)
+  border-radius: 10px
+  display: flex
+  flex-direction: row
+  .titel
+    position: absolute
+    width: 100%
+    h1
+      font-size: 16px
+      text-align: left
+      padding-left: 15px
+      color: white
+  ul.sections
+    z-index: -1
+    list-style: none
+    margin: 0
+    padding: 0
+    width: 450px
+    min-height: 500px
+    max-height: 800px
+    overflow: hidden
+    height: $height
+    position: relative
+    display: flex
+    flex-direction: row
+    border-top-left-radius: 10px
+    border-bottom-left-radius: 10px
+    background: $color_3
+    li
+      width: 100%
+      height: 100%
+      position: relative
+      transition: all 0.8s ease
+      section
+        width: 450px
+        height: 100%
+        position: relative
+        padding: 0
+        display: flex
+        justify-content: center
+        align-items: center
+        flex-direction: column
+        position: relative
+        .content
+          margin-top: 25px
+          width: 86% !important
+          height: 60%
+          position: relative
+          display: block
+        .headline
+          text-align: center
+          position: relative
+          h1
+            font-size: 20px
+            color: white
+            font-weight: 400
+            #fancy
+              font-family: "Lato"
+              font-weight: 700
+              text-shadow: 0px 0px 4px rgba(white,.3)
+            #subline
+              padding-top: 16px
+              font-size: 14px
+              line-height: 20px
+  ul.navigation
+    left: calc(-20px + 400px / 4)
+  .switch
+    display: none
+.squere
+  &#seven
+    margin-left: 240px
+    margin-top: 160px
+    //background-image: url("../img/logos/normal/youtube.png")
+  &#eight
+    margin-left: 160px
+    margin-top: 240px
+    //background-image: url("../img/logos/normal/9gag.png")
+  &#nine
+    display: none !important
+    margin-left: 0px
+    margin-top: 240px
+    //background-image: url("../img/logos/normal/netflix.png")
+  &#ten
+    display: none !important
+    margin-left: 160px
+    margin-top: 320px
+    //background-image: url("../img/logos/wide/pinterest.png")
+.browser
+  height: 330px !important
+#share .browser
+  right: -450px !important
+  img
+    height: 100%

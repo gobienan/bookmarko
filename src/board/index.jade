@@ -1,0 +1,31 @@
+doctype html
+html
+    include ./includes/head.jade
+    body
+      #preloader(style='visibility: hidden;')
+        #status
+          img(src="../img/svg-loaders/oval.svg")
+      include ./includes/navigation.jade
+      #board(style='visibility: visible;')
+        .background
+        include ./includes/header.jade
+        input(type="hidden" name="picture" role="uploadcare-uploader")
+        section.content
+            .category_filter
+                ul#categories
+                    li.category.active
+                        a(href="#") all
+                .hr
+                i(class="fa fa-share-alt" aria-hidden="true")
+                  input(type="button")
+            .links
+                ul.gridster#bookmarks
+      include ./includes/editlink.jade
+      include ./includes/add_tag.jade
+      include ./includes/search_img.jade
+      include ./includes/upload.jade
+      .addbutton
+        input(type="button" onclick="openAddlinkWindow()")
+        svg(style="width:20px;height:20px" viewBox="0 0 24 24")
+          path(fill="#000000" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z")
+    include ./includes/script.jade

@@ -1,0 +1,47 @@
+.window.editlink.hidden
+  .content#bookmarkInputValues(action="" bmid="")
+    .row
+      .col
+        .titel 
+          input(id="titel" value="" placeholder="Your Titel")
+          .underline
+        .url(name="url") 
+          .input
+            input(id="url" value = "" placeholder="http://bookmarko.me/")
+        .category(name="category") 
+          .input
+            input(id="category" placeholder="Category" type="text" value="All")
+            .dropdown_menu_icon
+              i(id="icon")
+            .dropdown_menu
+              ul.items
+                li.selectable_item All
+                li.selectable_item Work
+                li.selectable_item Social
+                li.selectable_item Design
+                li.selectable_item Uni
+        .size(name="size")
+          ul#thumbnail_size
+            li(size="1").active small
+            li(size="2") wide
+            li(size="3") big
+      .col#bookmark_thumbail
+        .thumbnail.small
+          span
+            img(src="")
+            form(id="upload" method="post" action="../php/upload.php" enctype="multipart/form-data")
+              .dragAndDrop#drop Drop the logo here
+              input(type="file" value="or choose file" name="upl" multiple)
+            .browse_logo
+              input(type="button" onclick="openSearchImgWindow()")
+              .search
+                i(class="fa fa-search" aria-hidden="true")
+            .delete_logo
+              input(type="button" onclick="deleteThumbnail(this)")
+              .search
+                i(class="fa fa-trash" aria-hidden="true")  
+    .save save
+      input(type="button" onclick="selectAddOrUpdateBookmark()")
+    .close
+      i(class="fa fa-times" aria-hidden="true")
+      input(type="button" onclick="closeEditlinkWindow()")

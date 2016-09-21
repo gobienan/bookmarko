@@ -1,0 +1,190 @@
+body,html
+  margin: 0
+  width: 100%
+  height: 100%
+  font-family: "Raleway"
+  background: linear-gradient(to bottom, #3a4a5e 0%,$color_6 100%)
+  padding: 10px
+  box-sizing: border-box
+.wrapper
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%,-50%)
+  overflow: hidden
+.content
+  border-radius: 10px
+  background-color: white
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  transition: all .3s ease
+  padding: 20px 50px
+  &#success
+  .headline
+    width: 80%
+    text-align: center
+    i
+      cursor: pointer
+      position: absolute
+      left: 0
+      font-size: 16px
+      color: $color_2
+      padding: 15px
+    h1
+      color: $color_2
+      font-size: 25px
+      &#activation
+        line-height: normal
+  h3
+    color: $color_2
+    font-weight: 300
+    text-align: center
+.button
+  width: 80%
+  height: 40px
+  display: flex
+  margin: 20px auto 0
+  justify-content: center
+  align-items: center
+  font-weight: bold
+  transition: all .3s ease-in-out
+  position: relative
+  background-color: $color_3
+  color: white
+  padding: 5px
+  padding-left: 20px
+  border-radius: 5px
+  &:hover
+    background-color: rgba($color_3,0.8)
+    color: white
+form
+  width: 100%
+input[type="checkbox"]
+  border: solid 1px $color_2
+input[type="submit"]
+  position: absolute
+  width: 100%
+  height: 100%
+  top: 0
+  left: 0
+  opacity: 0
+  cursor: pointer
+  z-index: 1
+.row
+  width: 100%
+  overflow: hidden
+  margin: 10px auto
+  padding: 1px
+  &.flex
+    display: flex
+    justify-content: space-around
+    align-items: center
+    align-self: stretch
+  &.back
+    left: 0
+    bottom: 0
+    margin-bottom: 0px
+    margin-top: 0px
+    padding: 0
+    transition: all .3s ease-in-out
+    color: white
+    text-align: center
+    font-size: 13px
+    padding: 15px 0
+    a
+      font-weight: 700
+      color: white
+      text-transform: none
+      text-decoration: none
+  .col
+    width: 40%
+    margin: 0 auto
+    font-size: 14px
+    color: rgba($color_2,0.7)
+    text-align: center
+.rememberMe
+  padding-left: 20px
+  float: left
+  cursor: pointer
+.forgotPassword
+  float: right
+  padding-right: 20px
+.input
+  border: solid 1px rgba($color_2, .2)
+  border-radius: 5px
+  display: flex
+  align-items: center
+  padding: 5px
+  padding-left: 20px
+  background-color: rgba(white, .1)
+  width: 80%
+  margin: 0 auto
+  i
+    padding-right: 20px
+    color: $color_2
+  &.incorrect
+    border-width: 2px
+    border-color: rgba($button_color_cancel_hover,.5)
+  &.correct
+    border-width: 2px
+    border-color: $color_3
+  input
+    width: 100%
+    color: black
+    font-size: 16px
+    font-weight: 200
+    outline: none
+    border: none
+    margin: 10px 10px
+    background-color: transparent !important
+    &:invalid
+      box-shadow: none
+  ::-webkit-input-placeholder
+    text-transform: uppercase
+    color: rgba($color_2,.6)
+    font-size: 13px
+  ::-moz-placeholder
+    color: rgba($color_2,.8)
+    font-size: 13px
+    text-transform: uppercase
+.response
+  border: solid 2px rgba($button_color_cancel,.5)
+  border-radius: 5px
+  padding: 5px 10px
+  margin: 25px auto 0 auto
+  width: 80%
+  color: rgba($color_2,.6)
+  text-align: center
+  display: none
+  font-size: 14px
+footer
+  z-index: 999
+  position: absolute
+  bottom: 0
+  left: 0
+  width: 100%
+  background: darken(white, 5%)
+  height: 40px
+  clear: both
+  p
+    padding: 0 20px
+    font-size: 12px
+    color: $color_2
+    font-weight: 500
+  .footerContent
+    width: 100%
+    height: 40px
+    position: absolute
+    bottom: 0
+    .madeBy
+      float: right
+      p
+        text-align: right
+    .copyright
+      float: left
+      p
+        text-align: left
+a
+  text-decoration: none

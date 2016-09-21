@@ -1,0 +1,30 @@
+.content
+  .category_filter
+    width: 900px
+    margin: 0 auto
+  .links
+    padding: 0px 0 50px 0
+    width: 900px
+    margin: 0 auto
+    ul#bookmarks
+      //margin: 0 auto
+      padding: 0
+      li
+        height: 80px
+        width: 80px
+        &.wide
+          width: 180px
+        &.tall
+          height: 180px
+        &.big
+          width: 180px
+          height: 180px
+        &.wide,&.big
+          .details
+            &.active
+              p
+                font-size: 14px
+        .edit,.delete
+          width: 10px
+          height: 10px
+          padding: 6px

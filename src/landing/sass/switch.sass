@@ -1,0 +1,64 @@
+ul.switch
+  display: flex
+  list-style: none
+  align-items: center
+  margin: 0
+  position: absolute
+  top: 20px
+  left: 50%
+  z-index: 99
+  li
+    padding: 5px 5px
+    text-transform: uppercase
+    text-decoration: none
+    font-size: 13px
+    cursor: pointer
+    position: relative
+    &.active
+      a
+        color: $color_2
+        background-color: white
+    a
+      color: white
+      font-size: 13px
+      font-weight: 700
+      line-height: 1
+      overflow: hidden
+      padding: 10px
+      text-decoration: none
+      position: relative
+      box-sizing: border-box
+      display: block
+      &:hover
+        span
+          &::before
+            width: 100%
+        &::after
+          transform: translate3d(0px, 0px, 0px)
+      &::after
+        background: white none repeat scroll 0 0
+        content: ""
+        height: 100%
+        position: absolute
+        right: 0
+        top: 0
+        transform: translate3d(105%, 0px, 0px)
+        transition: transform 0.3s cubic-bezier(0.7, 0, 0.3, 1) 0s
+        width: 100%
+        z-index: 0
+      span
+        display: block
+        box-sizing: border-box
+        position: relative
+        font-weight: 700
+        &::before
+          color: $color_2
+          content: attr(data-letters)
+          font-weight: 700
+          left: 0
+          overflow: hidden
+          position: absolute
+          transition: width 0.3s cubic-bezier(0.7, 0, 0.3, 1) 0s
+          white-space: nowrap
+          width: 0
+          z-index: 1

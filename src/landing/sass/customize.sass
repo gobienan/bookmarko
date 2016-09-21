@@ -1,0 +1,76 @@
+section
+  &#customize
+    .headline
+      padding-left: 200px
+      &.active
+        padding-left: 0px
+    .content
+      width: 70%
+      position: relative
+      display: block
+      list-style: none
+      padding: 0
+      .squere
+        position: absolute
+        width: 70px
+        height: 70px
+        background-color: white
+        left: 0
+        transition: all .3s ease
+        cursor: pointer
+        opacity: 0
+        border: solid 1px rgba(black,.1)
+        display: none
+        background:
+          size: cover
+          position: center
+        &.active
+          animation-name: fadeIn
+          animation-duration: 4s
+          animation-fill-mode: forwards
+        &.wide
+          width: 150px
+        &.big
+            width: 150px
+            height: 150px
+        &:hover
+          box-shadow: 5px 5px 0 0 rgba(0, 0, 0, .4)
+          transform: translateY(-5px)
+        &#one
+          box-shadow: 5px 5px 0 0 rgba(0, 0, 0, .4)
+          transform: translateY(-5px)
+          background-image: url("../img/logos/normal/facebook.png")
+        &#two
+          margin-left: 160px
+          background-image: url("../img/logos/normal/github.png")
+        &#three
+          margin-left: 240px
+          background-image: url("../img/logos/wide/amazon.png")
+        &#four
+          margin-left: 160px
+          margin-top: 80px
+          background-image: url("../img/logos/wide/whatsapp.png")
+        &#five
+          margin-left: 320px
+          margin-top: 80px
+          background-image: url("../img/logos/normal/twitter.png")
+        &#six
+          margin-left: 80px
+          margin-top: 160px
+          background-image: url("../img/logos/normal/imgur.png")
+        &#seven
+          margin-left: 240px
+          margin-top: 160px
+          background-image: url("../img/logos/normal/youtube.png")
+        &#eight
+          margin-left: 160px
+          margin-top: 240px
+          background-image: url("../img/logos/normal/9gag.png")
+        &#nine
+          margin-left: 0px
+          margin-top: 240px
+          background-image: url("../img/logos/normal/netflix.png")
+        &#ten
+          margin-left: 160px
+          margin-top: 320px
+          background-image: url("../img/logos/wide/pinterest.png")

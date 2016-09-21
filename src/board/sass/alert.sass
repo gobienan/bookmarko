@@ -1,0 +1,33 @@
+.alert
+  backface-visibility: hidden
+  height: auto
+  left: 50%
+  top: 5%
+  position: fixed
+  transform: scale(1)
+  transform: translate(-50%, -50%)
+  z-index: 2000
+  .alert_content
+    color: #fff
+    margin: 0 auto
+    position: relative
+    opacity: 0
+    transform: scale(.7)
+    transform-origin: center
+    transition: all 0.3s ease
+    box-sizing: border-box
+    &.warning
+      background-color: #E84A5F
+    &.show
+      opacity: 1
+      transform: rotateX(0deg)
+    .message
+      text-align: center
+      box-sizing: border-box
+      h1
+        padding: 1.3em 2em
+        margin: 0 5em
+        box-sizing: border-box
+        font-size: 16px
+        font-weight: 700
+        text-transform: uppercase

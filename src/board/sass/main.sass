@@ -1,0 +1,103 @@
+body,html
+  margin: 0
+  width: 100%
+  height: 100%
+  font-family: "Raleway"
+  //perspective: 1500px
+  background:
+    //image: url("../img/background.jpg")
+    size: cover
+    position: center
+    color: $color_2
+  &.noscroll
+    overflow: hidden
+    max-width: 100%
+#preloader
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  z-index: 999
+  position: fixed
+  width: 100%
+  height: 100%
+  background:
+    color: $color_2
+  #status
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%,-50%)
+.background
+  z-index: -1
+  position: fixed
+  width: 100%
+  height: 100%
+  background:
+    //image: url("../img/background.jpg")
+    size: cover
+    position: center
+    color: $color_4
+  &::after
+    top: 0
+    left: 0
+    content: " "
+    display: block
+    width: 100%
+    height: 100%
+    position: fixed
+    //background-color: rgba(black,.2)
+p
+  font-size: 1em
+.row
+  width: 100%
+  padding-bottom: 20px
+  overflow: hidden
+  .col
+    float: left
+    width: 40%
+    padding-left: 2.5%
+    padding-right: 2.5%
+input
+  background-color: transparent
+  border: none
+  outline: none
+  color: white
+input[type="button"]
+  position: absolute
+  width: 100%
+  height: 100%
+  top: 0
+  left: 0
+  opacity: 0
+  cursor: pointer
+  z-index: 1
+.save,.close
+  background-color: $button_color_save_hover
+  width: 90px
+  height: 50px
+  display: flex
+  justify-content: center
+  align-items: center
+  font-weight: bold
+  color: rgba(0, 0, 0, 0.6)
+  transition: all .3s ease-in-out
+  &.close
+    color: white
+  &:hover
+    background-color: $button_color_save_hover
+  .close
+    background-color: $button_color_cancel
+    &:hover
+      background-color: $button_color_cancel_hover
+.window
+  height: 100vh
+  width: 100vw
+  display: block
+  opacity: 1
+  visibility: visible
+  position: fixed
+  top: 0
+  transition: all .3s ease
+  background-color: rgba(0, 0, 0, .4)
+  transform: scale(1)

@@ -1,0 +1,320 @@
+body
+  margin: 0
+  width: 100%
+  height: 100%
+  font-family: "Raleway"
+  background-color: $color_3
+  padding: 10px
+  box-sizing: border-box
+  overflow-x: hidden
+section
+  width: 99%
+  margin: 0 auto
+  background-color: white
+  position: relative
+  padding: 100px 0
+  &::before
+    position: absolute
+    z-index: 55
+    width: 100px
+    height: 2px
+    display: block
+    content: " "
+    top: 0
+    left: 0
+    background-color: rgba($color_3,.4)
+  h1
+    font-size: 40px
+    font-weight: 400
+    color: rgba($color_3, 1)
+  &#landingpage
+    height: 600px
+    background-color: $color_3
+    padding: 0
+    &::before
+      background-color: transparent
+    .header
+      display: flex
+      align-items: center
+      justify-content: space-between
+      .logo
+          float: left
+          color: white
+          margin-left: 50px
+          cursor: pointer
+          z-index: 999
+          position: relative
+      nav
+        float: right
+        margin-right: 50px
+        z-index: 999
+        position: relative
+        ul
+          display: flex
+          list-style: none
+          align-items: center
+          margin: 0
+          li
+            padding: 5px 20px
+            text-transform: uppercase
+            text-decoration: none
+            font-size: 13px
+            cursor: pointer
+            position: relative
+            &:last-child
+              display: flex
+              align-items: center
+              padding: 8px 15px
+              margin-left: 20px
+              font-weight: 700
+              cursor: pointer
+              color: white
+              border: solid 1px white
+              transition: all 0.3s cubic-bezier(0.7, 0, 0.3, 1) 0s
+              a
+                position: absolute
+                top: 0
+                left: 0
+                width: 100%
+                height: 100%
+              &:hover
+                background-color: white
+                color: $color_2
+                i
+                  color: $color_2
+            a
+              color: white
+              font-size: 13px
+              font-weight: 700
+              line-height: 1
+              overflow: hidden
+              padding: 10px
+              text-decoration: none
+              position: relative
+              box-sizing: border-box
+              display: block
+              &:hover
+                span
+                  &::before
+                    width: 100%
+                &::after
+                  transform: translate3d(0px, 0px, 0px)
+              &::after
+                background: white none repeat scroll 0 0
+                content: ""
+                height: 100%
+                position: absolute
+                right: 0
+                top: 0
+                transform: translate3d(105%, 0px, 0px)
+                transition: transform 0.3s cubic-bezier(0.7, 0, 0.3, 1) 0s
+                width: 100%
+                z-index: -1
+              span
+                display: block
+                box-sizing: border-box
+                position: relative
+                font-weight: 700
+                &::before
+                  color: $color_2
+                  content: attr(data-letters)
+                  font-weight: 700
+                  left: 0
+                  overflow: hidden
+                  position: absolute
+                  transition: width 0.3s cubic-bezier(0.7, 0, 0.3, 1) 0s
+                  white-space: nowrap
+                  width: 0
+    .landing_text
+      height: 100%
+      width: 100%
+      top: 0
+      //transform: translate(-35%,0%)
+      text-align: center
+      .headline
+        top: 25%
+        position: absolute
+        width: 800px
+        left: 50%
+        transform: translate(-50%,0%)
+        h1
+          font-size: 55px
+          color: white
+          font-weight: 200
+          #fancy
+            font-family: "Lato"
+            font-weight: 700
+            text-shadow: 0px 0px 4px rgba(white,.3)
+          #subline
+            padding-top: 20px
+            font-size: 18px
+    .input#getStarted
+      top: 75%
+      left: 50%
+
+      position: absolute
+      transform: translate(-50%,-50%)
+      .register
+        margin-left: 5px
+        padding: 0 10px
+        text-transform: uppercase
+        background-color: transparent !important
+        color: white
+        border-left: solid 1px $color_3
+        &:hover
+          background-color: $color_3 !important
+    .example
+      width: 600px
+      height: 100%
+      //background-image: url("../img/example.png")
+      background-size: contain
+      background-repeat: no-repeat
+      position: absolute
+      right: 0
+      top: 0
+      display: block
+  &#access
+    &::before
+      position: absolute
+      z-index: 55
+      width: 100%
+      height: 10px
+      display: block
+      content: " "
+      top: 0
+      left: 0
+      //background-color: $color_4
+    background-color: #EEF5F9
+    ul#browser_logos
+      display: flex
+      list-style: none
+      margin: 0
+      margin-top: 20px
+      align-items: center
+      justify-content: center
+      li
+        padding-left: 15px
+        padding-right:  15px
+        height: 50px
+        width: 50px
+        img
+          width: 100%
+  &#customize
+    padding: 50px 0
+    background-color: white
+    .col
+      width: 35%
+      padding-right: 5%
+    .app
+      background:
+        image: url("../img/board.png")
+        size: cover
+        repeat: no-repeat
+      width: 800px
+      height: 468px
+      position: absolute
+      top: -60px
+      transform: translateX(65px)
+      z-index: 99
+      box-shadow: 0px 0px 30px rgba(0,0,0,0.25)
+  &#share
+    background-color: #EEF5F9
+  &#register
+    padding: 20px 0
+    background-color: $color_3
+    text-align: center
+    p
+      color: white
+    &::before
+      position: absolute
+      z-index: 55
+      width: 100%
+      height: 10px
+      display: block
+      content: " "
+      bottom: 0
+      left: 0
+      background-color: $color_3
+    h1
+      color: white
+      font-size: 35px
+      font-weight: 700
+    .register
+      background-color: $color_3
+      margin-left: 5px
+footer
+  height: 40px
+  color: rgba(white,1)
+  font-size: 13px
+  width: 80%
+  margin: 50px auto 0
+  display: flex
+  justify-content: center
+  align-items: center
+  border-top: solid 1px rgba(white,.5)
+.button
+  width: 150px
+  height: 50px
+  display: flex
+  justify-content: center
+  align-items: center
+  font-size: 13px
+  text-transform: uppercase
+  font-weight: 700
+  color: white
+  transition: all .2s ease-in-out
+  position: relative
+  background-color: transparent !important
+  color: white
+  border-left: solid 1px $color_3
+  &:hover
+    background-color: $color_3 !important
+input[type="button"]
+  position: absolute
+  width: 100%
+  height: 100%
+  top: 0
+  left: 0
+  opacity: 0
+  cursor: pointer
+  z-index: 1
+article
+  width: 80%
+  overflow: hidden
+  margin: 0px auto
+.row
+  width: 100%
+  overflow: hidden
+  margin: 0 auto
+  .col
+    float: left
+    width: 50%
+p
+  color: rgba($color_2,.5)
+  font-size: 16px
+  line-height: 40px
+.input
+  margin: 25px auto
+  max-width: 440px
+  display: flex
+  align-items: center
+  padding: 5px
+  background-color: rgba(white,.3)
+  i
+    color: white
+    padding: 0 20px
+  input
+    width: 100%
+    color: white
+    font-size: 16px
+    outline: none
+    border: none
+    background-color: transparent
+  ::-webkit-input-placeholder
+    text-transform: uppercase
+    color: rgba(white,1)
+    font-size: 13px
+  ::-moz-placeholder
+    color: rgba(white,1)
+    font-size: 13px
+    text-transform: uppercase

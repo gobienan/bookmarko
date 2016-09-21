@@ -1,0 +1,89 @@
+.add_tag_window
+  height: 100%
+  width: 100%
+  display: flex
+  opacity: 1
+  visibility: visible
+  justify-content: center
+  align-items: center
+  position: fixed
+  top: 0
+  z-index: 4
+  transition: all .3s ease
+  background-color: rgba(0, 0, 0, .4)
+  transform: scale(1)
+  &.hidden
+    opacity: 0
+    visibility: hidden
+    transform: scale(.7)
+    pointer-events: none
+  .content
+    height: 200px
+    width: 600px
+    background-color: white
+    padding: 0
+    position: relative
+    transform-origin: center center
+    transform-origin: 50% 0 0
+    transform-style: preserve-3d
+    transition: all 0.3s ease
+    box-sizing: border-box
+    opacity: 0
+    box-shadow: 7px 7px 0px 0px rgba(30, 30, 30, 1)
+    &.active
+      opacity: 1
+    .header
+      display: flex
+      align-items: center
+      justify-content: center
+      position: relative
+      margin-top: 20px
+      .icon
+        position: absolute
+        top: 10px
+        left: 10px
+        width: 20px
+        height: 20px
+      .titel
+        color: black
+        margin-left: 10px
+        margin-right: 10px
+        text-transform: uppercase
+        font-weight: 700
+    .close
+      position: absolute
+      background-color: transparent
+      top: 10px
+      right: 10px
+      height: 30px
+      width: 30px
+      transition: all .3s
+      cursor: pointer
+      color: black
+      border-radius: 50%
+      &:hover
+        background-color: $button_color_cancel_hover
+        color: white
+    .input
+      margin: 25px auto
+      border: solid 1px lightgray
+      width: 440px
+      display: flex
+      align-items: center
+      padding: 5px
+      padding-left: 20px
+      input
+        width: 100%
+        color: black
+        font-size: 16px
+        font-weight: 200
+        text-transform: uppercase
+      ::-webkit-input-placeholder
+        color: rgba(black,.3)
+        font-size: 13px
+      ::-moz-placeholder
+        color: rgba(black,.5)
+        font-size: 13px
+    .save
+      position: relative
+      margin-left: 10px

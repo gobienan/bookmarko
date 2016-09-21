@@ -1,0 +1,36 @@
+doctype html
+html
+    include ./includes/head_login.jade
+    body
+      .wrapper
+        .content#form_login
+          .headline
+            a(href="../")
+              i(class="fa fa-arrow-left" aria-hidden="true")
+            h1 bookmarko
+          .subline
+            h3 Login to your dashboard
+          .row
+            .input
+              .icon
+                i(class="fa fa-envelope-o" aria-hidden="true")
+              input(id="mail" name="mail" type="email" placeholder="Your Email" required)
+          .row
+            .input
+              .icon
+                i(class="fa fa-unlock-alt" aria-hidden="true")
+              input(id ="password" name="password" type="Password" placeholder="Your Password" required)
+          .row.flex
+            .col
+              .rememberMe
+                <input type="checkbox" id="remember_me" checked>
+                <label for="remember_me"> Remember me</label>
+            .col 
+              .forgotPassword Forgot password ?
+          .row
+            .button Sign In
+              input(type="submit" id="submit_login")
+            .response
+        .row.back Don't have an account? 
+          a(href="../register/") Sign Up
+    include ./includes/script_login.jade

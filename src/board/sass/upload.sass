@@ -1,0 +1,121 @@
+.upload
+  z-index: 4
+  &.hidden
+    opacity: 0
+    visibility: hidden
+    transform: scale(.7)
+    pointer-events: none
+  .content
+    width: 800px
+    background-color: white
+    padding: 0
+    position: absolute
+    bottom: 50%
+    right: 50%
+    transform: translate(50%,50%)
+    transform-origin: center center
+    transform-origin: 50% 0 0
+    transform-style: preserve-3d
+    transition: all 0.3s ease
+    box-sizing: border-box
+    opacity: 0
+    box-shadow: 7px 7px 0px 0px rgba(30, 30, 30, 1)
+    &.active
+      opacity: 1
+    .header
+      display: flex
+      align-items: center
+      justify-content: center
+      position: relative
+      margin-top: 20px
+      .titel
+        color: black
+        margin-left: 10px
+        margin-right: 10px
+        text-transform: uppercase
+        font-weight: 700
+    .close
+      position: absolute
+      background-color: transparent
+      top: 10px
+      right: 10px
+      height: 30px
+      width: 30px
+      transition: all .3s
+      cursor: pointer
+      color: black
+      border-radius: 50%
+      &:hover
+        background-color: $button_color_cancel_hover
+        color: white
+    form
+      #drop
+        margin: 20px auto
+        width: 80%
+        height: 200px
+        border: 2px rgba(black,.2)
+        border-spacing: 50px 50px
+        border-radius: 5px
+        border-style: dashed
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        transition: all 0.3s ease-out
+        &.hover
+          border-color:  $color_3
+          padding: 10px
+          transform-origin: center
+        .browse
+          background-color: $color_3
+          padding: 10px 20px
+          position: relative
+          color: white
+          border-radius: 30px
+          cursor: pointer
+          input
+            position: absolute
+            top: 0
+            left: 0
+            right: 0
+            bottom: 0
+            height: 100%
+            width: 100%
+            opacity: 0
+            cursor: pointer
+      ul
+        padding: 0
+        list-style: none
+        margin: 30px 0 50px 0
+        transition: all 0.3s ease
+        li
+          padding: 20px 0px
+          margin: 0px 50px
+          position: relative
+          border-top: solid 1px rgba(black,.2)
+          color: rgba(black,.5)
+          overflow: hidden
+          display: flex
+          align-items: center
+          &:last-child
+            border-bottom: solid 1px rgba(black,.2)
+          &:first-child
+            border-top: none
+            color: rgba(black,.7)
+            font-weight: 700
+          &.hidden
+            display: none
+          .titel,.size,.progressbar
+            float: left
+            width: 40%
+          .size
+            width: 20%
+          .progressbar
+            height: 5px
+            width: 0px
+            border-radius: 10px
+            background-color: $button_color_cancel_hover
+            transition: all 0.3s
+            &.done
+              background-color: $button_color_save_hover
+              box-shadow: 0 0 3px 0 $button_color_save_hover

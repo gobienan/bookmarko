@@ -1,0 +1,64 @@
+.dropdown_menu_icon
+  position: absolute
+  z-index: 99
+  width: 20px
+  height: 20px
+  top: -23px
+  right: -40px
+.dropdown_menu
+  overflow-y: scroll
+  left: -1px
+  cursor: pointer
+  position: absolute
+  z-index: 98
+  width: 101%
+  top: 0px
+  height: 200px
+  background: #fff
+  -webkit-transition: all 350ms cubic-bezier(0.19, 1, 0.22, 1)
+  transition: all 350ms cubic-bezier(0.19, 1, 0.22, 1)
+  -webkit-transform: scale(0)
+  transform: scale(0)
+  -webkit-transform-origin: left top
+  transform-origin: left top
+  &.open
+    -webkit-transform: scale(1)
+    transform: scale(1)
+    ul
+      li
+        &.selectable_item
+          opacity: 1
+          -webkit-transition: all 350ms cubic-bezier(0.19, 1, 0.22, 1)
+          transition: all 350ms cubic-bezier(0.19, 1, 0.22, 1)
+          -webkit-transform: translate3d(0, 0, 0)
+          transform: translate3d(0, 0, 0)
+  ul
+    list-style: none
+    text-align: left
+    display: flex
+    flex-direction: column
+    li
+      &.selectable_item
+        color: black
+        cursor: pointer
+        -webkit-touch-callout: none
+        -webkit-user-select: none
+        -khtml-user-select: none
+        -moz-user-select: none
+        -ms-user-select: none
+        padding-left: 2.0em !important
+        padding-top: 0.25em
+        padding-bottom: 0.25em
+        position: relative
+        line-height: 2.35em
+        -webkit-transform: translate3d(0, -10px, 0)
+        transform: translate3d(0, -10px, 0)
+        opacity: 0
+        display: flex
+        align-items: center
+        transition: all .2s !important
+        overflow: hidden
+        &:hover
+          background-color: rgba(0, 0, 0, .1)
+        &.active
+          font-weight: 700

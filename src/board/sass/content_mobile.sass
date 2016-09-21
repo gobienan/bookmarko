@@ -1,0 +1,39 @@
+.content
+  .category_filter
+    width: 99%
+    margin: 0 auto
+    ul
+      width: 90%
+    .hr
+      width: 80%
+      left: calc(10% + 20px)
+    i
+      left: 90%
+  .links
+    padding: 20px 0 50px 0
+    width: 99%
+    margin: 0 auto
+    ul#bookmarks
+      margin: 0 auto
+      display: flex
+      align-items: center
+      justify-content: center
+      flex-wrap: wrap
+      padding: 0
+      width: 80%
+      position: relative
+      li
+        position: relative
+        height: 20vw
+        width: 20vw
+        &.wide
+          width: 20vw
+        &.wide,&.big
+          .details.active
+            p
+              font-size: 18px
+        &.tall
+          height: 20vw
+        &.big
+          width: 20vw
+          height: 20vw

@@ -1,0 +1,30 @@
+.content
+  .category_filter
+    width: 1200px
+    margin: 0 auto
+  .links
+    padding: 50px 0 50px 0
+    width: 1200px
+    margin: 0 auto
+    ul#bookmarks
+      //margin: 0 auto
+      padding: 0
+      li
+        height: 110px
+        width: 110px
+        .details
+          &.active
+            p
+              font-size: 16px
+        &.wide
+          width: 240px
+        &.wide,&.big
+          .details
+            &.active
+              p
+                font-size: 25px
+        &.tall
+          height: 240px
+        &.big
+          width: 240px
+          height: 240px
