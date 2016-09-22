@@ -28,16 +28,15 @@
       .col#bookmark_thumbail
         .thumbnail.small
           span
-            img(src="")
             form(id="upload" method="post" action="../php/upload.php" enctype="multipart/form-data")
-              .dragAndDrop#drop Drop the logo here
+              .dragAndDrop#drop drag & drop a logo here
               input(type="file" value="or choose file" name="upl" multiple)
             .browse_logo
               input(type="button" onclick="openSearchImgWindow()")
               .search
                 i(class="fa fa-search" aria-hidden="true")
             .delete_logo
-              input(type="button" onclick="deleteThumbnail(this)")
+              input(type="button" onclick="removeBookmarkThumbnail(this)")
               .search
                 i(class="fa fa-trash" aria-hidden="true")  
     .save save

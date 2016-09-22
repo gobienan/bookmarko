@@ -6312,7 +6312,8 @@ function getBookmarkInputValues() {
     data.url = parseUrl($("#bookmarkInputValues #url").val());
     data.cat = $("#bookmarkInputValues #category").val();
     data.size = $("#bookmarkInputValues #thumbnail_size li.active").attr("size");
-    data.img = $("#bookmarkInputValues #bookmark_thumbail img").attr("src");
+    data.img = $("#bookmarkInputValues #bookmark_thumbail .thumbnail").css("background-image");
+    data.img = data.img.replace("url(\"", "").replace("\")", "");
     for (var property in data) {
         if (data.hasOwnProperty(property)) {
             if ((data[property]) === "" && property != "id" && property != "img") {
@@ -6368,7 +6369,7 @@ function fillInputFields(id) {
     var url = $(selectedBookmark + " a").attr("href");
     var cat = $(selectedBookmark).attr("category");
     var size = $(selectedBookmark).attr("size");
-    var img_url = $(selectedBookmark + " .thumbnail").css("background-image");
+    var imgUrl = $(selectedBookmark + " .thumbnail").css("background-image");
     $("#bookmarkInputValues").attr("bmid", id);
     $("#bookmarkInputValues #titel").val(titel);
     $("#bookmarkInputValues #url").val(url);
@@ -6379,11 +6380,10 @@ function fillInputFields(id) {
             $(this).addClass("active");
         }
     });
-    if (img_url === undefined || img_url == " " || img_url === "" || img_url == "none") {
-        $("#bookmarkInputValues #bookmark_thumbail img").css("display", "none").attr("src", "");
+    if (imgUrl === undefined || imgUrl == " " || imgUrl === "" || imgUrl == "none") {
+        $("#bookmarkInputValues #bookmark_thumbail .thumbnail").css("background-image", "");
     } else {
-        img_url = img_url.replace("url(\"", "").replace("\")", "");
-        $("#bookmarkInputValues #bookmark_thumbail img").attr("src", img_url).css("display", "block");
+        $("#bookmarkInputValues #bookmark_thumbail .thumbnail").css("background-image", imgUrl);
     }
     $("#bookmarkInputValues #bookmark_thumbail .thumbnail").removeClass().addClass("thumbnail " + getCorrespondingSizeToInt(size));
     $('.underline').css("width", $('#titel').val().length * 25 + "px");
@@ -6405,17 +6405,18 @@ function updateDomBookmark(values) {
     $(selectedBookmark + " a").attr("href", values.url);
     $(selectedBookmark).attr("category", values.cat);
     $(selectedBookmark).attr("size", values.size);
-    if (values.img != " " && values.img !== "" && values.img !== undefined) {
+    if (values.img != " " && values.img !== "" && values.img !== undefined && values.img !== "none") {
         $(selectedBookmark + " .details").removeClass("active");
-        $(selectedBookmark + " .details").html("");
+        $(selectedBookmark + " .details p").html("");
+        $(selectedBookmark + " .thumbnail").css("background-image", "url('" + values.img + "')");
     } else {
         $(selectedBookmark + " .details p").html(values.titel);
+        $(selectedBookmark + " .details").addClass("active");
+        $(selectedBookmark + " .thumbnail").css("background-image", "");
     }
     if (values.img === "") {
-        $(selectedBookmark + " .thumbnail").css("background-image", "");
-    } else {
-        $(selectedBookmark + " .thumbnail").css("background-image", "url('" + values.img + "')");
-    }
+
+    } else {}
     $(selectedBookmark).removeClass("small").removeClass("wide").removeClass("big");
     $(selectedBookmark).addClass(getCorrespondingSizeToInt(values.size));
     widget = getWidgetSize(values.size);
@@ -6483,7 +6484,7 @@ function addBookmarkToDom(values) {
         details = "<div class='details active'><p>" + values.titel + "</p></div>";
         thumbnail = "<div class='thumbnail'><img></div>";
     } else {
-        details = "<div class='details'></div>";
+        details = "<div class='details'><p></p></div>";
         imageurl = "background-image:url('" + values.img + "')";
         thumbnail = "<div class='thumbnail' style=" + imageurl + "><img src=''></div>";
     }
@@ -6540,12 +6541,11 @@ function getWidgetSize(size) {
 function changeBookmarkThumbnail(elem) {
     closeSearchImgWindow();
     var li = $(elem).parent().parent();
-    var img_url = $(li).css("background-image");
-    if (img_url === undefined || img_url == " " || img_url === "" || img_url == "none") {
+    var imgUrl = $(li).css("background-image");
+    if (imgUrl === undefined || imgUrl == " " || imgUrl === "" || imgUrl == "none") {
         $("#bookmarkInputValues #bookmark_thumbail img").css("display", "none").attr("src", "");
     } else {
-        img_url = img_url.replace("url(\"", "").replace("\")", "");
-        $("#bookmarkInputValues #bookmark_thumbail img").attr("src", img_url).css("display", "block");
+        $("#bookmarkInputValues #bookmark_thumbail .thumbnail").css("background-image", imgUrl);
     }
 }
 
@@ -6574,6 +6574,10 @@ function addBookmarkThumbnailsToDom(values) {
     });
 }
 
+function removeBookmarkThumbnail(elem) {
+    //delete_logo->span->thumbnail
+    $(elem).parent().parent().parent().css("background-image", "");
+}
 
 function parseUrl(url) {
     if (url !== "") {
@@ -6694,8 +6698,9 @@ $(function() {
             } else {
                 data.context.find(".progressbar").addClass("done");
                 img_url = JSON.parse(data.result).src;
-                $("#bookmarkInputValues #bookmark_thumbail img").attr("src", img_url);
-                $("#bookmarkInputValues #bookmark_thumbail img").css("display", "block");
+                var dropZone = $('#drop');
+                dropZone.parent().parent().parent().removeClass('hover');
+                $("#bookmarkInputValues #bookmark_thumbail .thumbnail").css("background-image", "url('"+img_url+"')");
             }
         },
         fail: function(e, data) {
@@ -6720,12 +6725,12 @@ $(function() {
                 node = node.parentNode;
             } while (node !== null);
             if (found) {
-                dropZone.addClass('hover');
+                dropZone.parent().parent().parent().addClass('hover');
             } else {
-                dropZone.removeClass('hover');
+                dropZone.parent().parent().parent().removeClass('hover');
             }
         });
-        dropZone.removeClass('hover');
+        dropZone.parent().parent().parent().removeClass('hover');
     });
     // Helper function that formats the file sizes
     function formatFileSize(bytes) {
