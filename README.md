@@ -9,6 +9,8 @@ A site to manage your Bookmarks in a new way :3
 - Share your bookmarks with other bookmarko users
 - Give each bookmark a catagory
 
+![Preview](https://github.com/dark13258/bookmarko/blob/master/preview/preview.gif "Preview")
+
 ## Donate
 
 Help me to pay my coffee
