@@ -7,13 +7,10 @@ application.windows64
 application.macosx
 
 prepros.cfg
-/node_modules/
 /wireframe/
-/public/
 /upload/
+/php/
 
-*.jade
-*.sass
 *.php
 *.jpg
 *.jpeg
