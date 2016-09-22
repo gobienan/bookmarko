@@ -201,11 +201,14 @@
         overflow: hidden
         transition: all .3s ease
         &.small
-          height:  calc(#{$thumbnail_big} *2 / 3)
-          width:  calc(#{$thumbnail_big} * 2 / 3)
+          height:  220px
+          width:  220px
         &.wide
-          height: calc(#{$thumbnail_big}  / 2)
-          width: $thumbnail_big
+          height:  150px
+          width: 300px
+        &.big
+          height:  300px
+          width: 300px
         &:hover
           .browse_logo,.delete_logo
             opacity: 1

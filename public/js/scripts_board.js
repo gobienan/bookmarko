@@ -6252,7 +6252,10 @@ function updateSize() {
  * Entfernt Thumbnail
  */
 function deleteThumbnail(removeButton) {
-    var src = $(removeButton).parent().find(img).attr("src");
+    // input -> delete -> li
+    var src = $(removeButton).parent().parent().css("background-image");
+    src = src.replace("url(\"", "").replace("\")", "");
+    src = src.substring(src.lastIndexOf("/"), src.length);
     $.ajax({
         url: '../php/action.php',
         type: 'post',
@@ -6261,8 +6264,12 @@ function deleteThumbnail(removeButton) {
             'user': user,
             'src': src
         },
-        success: function(status) {
-            $(removeButton).parent().find(img).attr("src", "");
+        success: function(e, data) {
+            if (JSON.parse(e).status == "error") {
+                alert("Sorry buddy..you are not allowed to delete this one");
+            } else {
+                $(removeButton).parent().parent().css("display", "none");
+            }
         },
         error: function(xhr, desc, err) {
             console.log(xhr);
@@ -6431,7 +6438,7 @@ function addBookmarksToDom(data) {
         values.id = val.id;
         values.titel = val.titel;
         values.url = val.url;
-        values.size = valsize;
+        values.size = val.size;
         values.cat = val.category;
         if (val.img === undefined) {
             values.img = " ";
@@ -6532,10 +6539,14 @@ function getWidgetSize(size) {
  */
 function changeBookmarkThumbnail(elem) {
     closeSearchImgWindow();
-    var li = $(elem).parent();
-    var img_url = $(li).children("img").attr("src");
-    $("#bookmarkInputValues #bookmark_thumbail img").attr("src", img_url);
-    $("#bookmarkInputValues #bookmark_thumbail img").css("display", "block");
+    var li = $(elem).parent().parent();
+    var img_url = $(li).css("background-image");
+    if (img_url === undefined || img_url == " " || img_url === "" || img_url == "none") {
+        $("#bookmarkInputValues #bookmark_thumbail img").css("display", "none").attr("src", "");
+    } else {
+        img_url = img_url.replace("url(\"", "").replace("\")", "");
+        $("#bookmarkInputValues #bookmark_thumbail img").attr("src", img_url).css("display", "block");
+    }
 }
 
 /**
@@ -6552,11 +6563,13 @@ function addBookmarkThumbnailsToDom(values) {
             if (i == 1) {
                 addClass = "wide";
             }
-            var accept = "<div class='accept'><div class='icon'><i aria-hidden='true' class='fa fa-check'></i></div>";
             var selectButton = "<input type='button' onclick='changeBookmarkThumbnail(this)'>";
-            var thumbnail = "<img src='" + entry + "'>";
+            var deleteButton = "<div class='delete'><input type='button' onclick='deleteThumbnail(this)'></div>";
+            var accept = "<div class='accept'>" + selectButton + "<div class='icon'><i aria-hidden='true' class='fa fa-check'></i></div>";
+            var thumbnail = "<img src=''>";
+            imageurl = "background-image:url('" + entry + "')";
             var titel = entry.split('/');
-            $("#thumbnails").append("<li titel='" + titel + "' class='" + addClass + "'>" + selectButton + thumbnail + accept + "</li>");
+            $("#thumbnails").append("<li titel='" + titel + "' class='" + addClass + "' style=" + imageurl + ">" + thumbnail + deleteButton + accept + "</li>");
         });
     });
 }
