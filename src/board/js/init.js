@@ -42,7 +42,7 @@ $(function() {
         m.rotate('down');
         m.color('#fff');
     }
-    setInterval(function() {
+    var preloader = setInterval(function() {
         if (finishedLoadingBookmarks) {
             delay = 450;
             $('#status').delay(delay).fadeOut();
@@ -53,8 +53,7 @@ $(function() {
             $('nav').delay(delay).css({
                 'visibility': 'visible'
             });
-
-            clearTimeout();
+            clearInterval(preloader);
         }
     }, 50);
 });

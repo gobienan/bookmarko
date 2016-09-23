@@ -5770,7 +5770,7 @@ $(function() {
         m.rotate('down');
         m.color('#fff');
     }
-    setInterval(function() {
+    var preloader = setInterval(function() {
         if (finishedLoadingBookmarks) {
             delay = 450;
             $('#status').delay(delay).fadeOut();
@@ -5781,8 +5781,7 @@ $(function() {
             $('nav').delay(delay).css({
                 'visibility': 'visible'
             });
-
-            clearTimeout();
+            clearInterval(preloader);
         }
     }, 50);
 });
@@ -5971,7 +5970,7 @@ $(document).click(function(e) {
     } else if (!$(target).is('nav') && !$(target).parents().is('nav')) {
         $("#board").removeClass("push");
         $("nav").removeClass("active");
-        $("body").removeClass("overflow_hidden");
+        addBodyScroll();
     }
 });
 
@@ -6266,7 +6265,7 @@ function deleteThumbnail(removeButton) {
         },
         success: function(e, data) {
             if (JSON.parse(e).status == "error") {
-                alert("Sorry buddy..you are not allowed to delete this one");
+                warning("Sorry buddy..you are not allowed to delete this one");
             } else {
                 $(removeButton).parent().parent().css("display", "none");
             }
@@ -6480,7 +6479,7 @@ function addBookmarkToDom(values) {
     var deleteButton = "<div class='delete'><input type='button' onclick='deleteBookmark(this)'></div>";
     var thumbnail;
     var details;
-    if (values.img == " " || values.img === "" || values.img === undefined) {
+    if (values.img == " " || values.img === "" || values.img === undefined || values.img === "none") {
         details = "<div class='details active'><p>" + values.titel + "</p></div>";
         thumbnail = "<div class='thumbnail'><img></div>";
     } else {
