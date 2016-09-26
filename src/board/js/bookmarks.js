@@ -63,6 +63,7 @@ function addBookmark() {
             values.id = (data);
             widget = getWidgetSize(values.size);
             gridster.add_widget(addBookmarkToDom(values), widget.x, widget.y);
+            updatePosition();
             closeEditlinkWindow();
         },
         error: function(xhr, desc, err) {
@@ -99,7 +100,6 @@ function deleteBookmark(removeButton) {
  */
 function updatePosition() {
     $("#bookmarks li").each(function() {
-        $(this).css("transition", "all .2s ease");
         var id = $(this).attr("id");
         var x_pos = $(this).attr("data-col");
         var y_pos = $(this).attr("data-row");
@@ -266,8 +266,7 @@ function resetInputValues() {
             $(this).addClass("active");
         }
     });
-    $("#bookmarkInputValues #bookmark_thumbail img").css("display", "none");
-    $("#bookmarkInputValues #bookmark_thumbail img").attr("src", " ");
+    $("#bookmarkInputValues #bookmark_thumbail .thumbnail").css("background-image", "");
     $("#bookmarkInputValues #bookmark_thumbail .thumbnail").removeClass().addClass("thumbnail small");
 }
 
@@ -513,4 +512,59 @@ function isThere(theUrl) {
         },
         async: false
     });
+}
+
+function exportBookmarks(cat) {
+    category = cat;
+    $.ajax({
+        url: '../php/action.php',
+        type: 'post',
+        data: {
+            'action': 'encryptForExport',
+            'user': user,
+            'category': category
+        },
+        success: function(data, status) {
+            var values = JSON.parse(data);
+            copyToClipboard(values[0] + "&" + values[1]);
+        },
+        error: function(xhr, desc, err) {
+            console.log(xhr);
+            console.log("Details: " + desc + "\nError:" + err);
+        }
+    }); // end ajax call
+
+}
+$("#importBookmarksLink").keyup(function(e) {
+    var val = this.value;
+    if (e.keyCode == 13) {
+        importBookmarks(val);
+    }
+});
+
+function importBookmarks(val) {
+    if (val !== "") {
+        $.ajax({
+            url: '../php/action.php',
+            type: 'post',
+            data: {
+                'user': user,
+                'action': 'importBookmarks',
+                'string': val
+            },
+            success: function(data, status) {
+                addBookmarksToDom(data);
+                $("#importBookmarksLink").val("");
+                updatePosition();
+            },
+            error: function(xhr, desc, err) {
+                console.log(xhr);
+                console.log("Details: " + desc + "\nError:" + err);
+            }
+        }); // end ajax call
+    }
+}
+
+function copyToClipboard(text) {
+    window.prompt("Copy to clipboard: Ctrl+C, Enter", text);
 }

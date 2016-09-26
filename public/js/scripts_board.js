@@ -5796,31 +5796,6 @@ function initGridster() {
             widget_base_dimensions: [wBD, wBD],
             min_cols: 5,
             max_cols: 9,
-            resize: {
-                max_size: [2, 2],
-                resize: function(e, ui, $widget) {
-                    $widget.css("transition", "none");
-                    height = $widget.height();
-                    width = $widget.width();
-                    if (height > 200 && width > 200) {
-                        $widget.removeClass("small").removeClass("wide").removeClass("tall").addClass("big");
-                        $widget.attr("size", "3");
-                    } else if (width > 200) {
-                        $widget.removeClass("small").removeClass("big").removeClass("tall").addClass("wide");
-                        $widget.attr("size", "2");
-                    } else if (height > 200) {
-                        $widget.removeClass("small").removeClass("big").removeClass("wide").addClass("tall");
-                        $widget.attr("size", "3");
-                    } else {
-                        $widget.removeClass("big").removeClass("wide").removeClass("tall").addClass("small");
-                        $widget.attr("size", "1");
-                    }
-                },
-                stop: function(e, ui, $widget) {
-                    $widget.css("transition", "all .2s ease");
-                    updateSize();
-                }
-            },
             draggable: {
                 start: function() {
                     $("#bookmarks li").each(function() {
@@ -5966,11 +5941,9 @@ $(document).click(function(e) {
     if ($(target).is('#hamburger')) {
         $("#board").addClass("push");
         $("nav").addClass("active");
-        removeBodyScroll();
     } else if (!$(target).is('nav') && !$(target).parents().is('nav')) {
         $("#board").removeClass("push");
         $("nav").removeClass("active");
-        addBodyScroll();
     }
 });
 
@@ -6151,6 +6124,7 @@ function addBookmark() {
             values.id = (data);
             widget = getWidgetSize(values.size);
             gridster.add_widget(addBookmarkToDom(values), widget.x, widget.y);
+            updatePosition();
             closeEditlinkWindow();
         },
         error: function(xhr, desc, err) {
@@ -6187,7 +6161,6 @@ function deleteBookmark(removeButton) {
  */
 function updatePosition() {
     $("#bookmarks li").each(function() {
-        $(this).css("transition", "all .2s ease");
         var id = $(this).attr("id");
         var x_pos = $(this).attr("data-col");
         var y_pos = $(this).attr("data-row");
@@ -6354,8 +6327,7 @@ function resetInputValues() {
             $(this).addClass("active");
         }
     });
-    $("#bookmarkInputValues #bookmark_thumbail img").css("display", "none");
-    $("#bookmarkInputValues #bookmark_thumbail img").attr("src", " ");
+    $("#bookmarkInputValues #bookmark_thumbail .thumbnail").css("background-image", "");
     $("#bookmarkInputValues #bookmark_thumbail .thumbnail").removeClass().addClass("thumbnail small");
 }
 
@@ -6601,6 +6573,61 @@ function isThere(theUrl) {
         },
         async: false
     });
+}
+
+function exportBookmarks(cat) {
+    category = cat;
+    $.ajax({
+        url: '../php/action.php',
+        type: 'post',
+        data: {
+            'action': 'encryptForExport',
+            'user': user,
+            'category': category
+        },
+        success: function(data, status) {
+            var values = JSON.parse(data);
+            copyToClipboard(values[0] + "&" + values[1]);
+        },
+        error: function(xhr, desc, err) {
+            console.log(xhr);
+            console.log("Details: " + desc + "\nError:" + err);
+        }
+    }); // end ajax call
+
+}
+$("#importBookmarksLink").keyup(function(e) {
+    var val = this.value;
+    if (e.keyCode == 13) {
+        importBookmarks(val);
+    }
+});
+
+function importBookmarks(val) {
+    if (val !== "") {
+        $.ajax({
+            url: '../php/action.php',
+            type: 'post',
+            data: {
+                'user': user,
+                'action': 'importBookmarks',
+                'string': val
+            },
+            success: function(data, status) {
+                addBookmarksToDom(data);
+                $("#importBookmarksLink").val("");
+                updatePosition();
+            },
+            error: function(xhr, desc, err) {
+                console.log(xhr);
+                console.log("Details: " + desc + "\nError:" + err);
+            }
+        }); // end ajax call
+    }
+}
+
+function copyToClipboard(text) {
+    window.prompt("Copy to clipboard: Ctrl+C, Enter", text);
 }
 
 $("#bookmarkSearchField").keyup(function(e) {
