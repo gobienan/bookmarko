@@ -200,6 +200,11 @@
         align-items: center
         overflow: hidden
         transition: all .3s ease
+        padding: 1px
+        background-size: cover
+        background-position: center
+        &.hover
+          padding: 10px
         &.small
           height:  220px
           width:  220px
@@ -222,29 +227,26 @@
             width: 100%
             height: 100%
             .dragAndDrop
-              display: flex
               width: 100%
               height: 100%
-              justify-content: center
-              align-items: center
               font-weight: 700
-              color: rgba(255,255, 255, 1)
+              color: white
               font-size: 14px
               display: flex
               flex-direction: column
-              justify-content: center
+              justify-content: flex-start
+              padding-top: 8px
               align-items: center
               transition: all 0.3s ease-out
-              &.hover
-                border-color:  $color_3
-                padding: 10px
-                transform-origin: center
-          img
-            position: absolute
-            top: 50%
-            left: 50%
-            transform: translate(-50%,-50%)
-            width: 100%
+              position: relative
+              &::before
+                content: " "
+                display: block
+                width: 100%
+                height: 30px
+                position: absolute
+                top: 0
+                background-color: rgba($color_2, 0.5)
           .browse_logo,.delete_logo
             transition: all .3s ease-in-out
             opacity: 0
@@ -256,7 +258,7 @@
             display: flex
             align-items: center
             justify-content: center
-            background-color: rgba($color_2, 0.3)
+            background-color: rgba($color_2, 0.5)
             &.browse_logo
               bottom: 0
               left: 0
@@ -270,7 +272,7 @@
               align-items: center
               justify-content: center
               i
-                color: rgba(255,255, 255, 0.8)
+                color: white
                 font-size: 20px
     .save,.close
       position: absolute
