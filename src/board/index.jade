@@ -16,8 +16,21 @@ html
                     li.category.active
                         a(href="#") all
                 .hr
-                i(class="fa fa-share-alt" aria-hidden="true")
-                  input(type="button")
+                .importExportButtons
+                  i(class="fa fa-download" aria-hidden="true")#importBookmarks
+                    input(type="button")
+                    .dropdownInputField
+                      label import link
+                      input(type="text")#importBookmarksLink
+                      .save import
+                        input(type="button" onclick="importBookmarks(document.getElementById('importBookmarksLink').value)")
+                  i(class="fa fa-share-alt" aria-hidden="true")#exportBookmarks
+                    input(type="button")
+                    .dropdownCategories
+                      ul
+                        li(onclick = "exportBookmarks(this.innerHTML)") all
+                        li(onclick = "exportBookmarks(this.innerHTML)") social
+                        li(onclick = "exportBookmarks(this.innerHTML)") design
             .links
                 ul.gridster#bookmarks
       include ./includes/editlink.jade

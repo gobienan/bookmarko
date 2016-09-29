@@ -68,31 +68,6 @@ function initGridster() {
             widget_base_dimensions: [wBD, wBD],
             min_cols: 5,
             max_cols: 9,
-            resize: {
-                max_size: [2, 2],
-                resize: function(e, ui, $widget) {
-                    $widget.css("transition", "none");
-                    height = $widget.height();
-                    width = $widget.width();
-                    if (height > 200 && width > 200) {
-                        $widget.removeClass("small").removeClass("wide").removeClass("tall").addClass("big");
-                        $widget.attr("size", "3");
-                    } else if (width > 200) {
-                        $widget.removeClass("small").removeClass("big").removeClass("tall").addClass("wide");
-                        $widget.attr("size", "2");
-                    } else if (height > 200) {
-                        $widget.removeClass("small").removeClass("big").removeClass("wide").addClass("tall");
-                        $widget.attr("size", "3");
-                    } else {
-                        $widget.removeClass("big").removeClass("wide").removeClass("tall").addClass("small");
-                        $widget.attr("size", "1");
-                    }
-                },
-                stop: function(e, ui, $widget) {
-                    $widget.css("transition", "all .2s ease");
-                    updateSize();
-                }
-            },
             draggable: {
                 start: function() {
                     $("#bookmarks li").each(function() {
