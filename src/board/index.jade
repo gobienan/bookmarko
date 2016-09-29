@@ -16,29 +16,31 @@ html
                     li.category.active
                         a(href="#") all
                 .hr
-                .importExportButtons
-                  i(class="fa fa-download" aria-hidden="true")#importBookmarks
-                    input(type="button")
-                    .dropdownInputField
-                      label import link
-                      input(type="text")#importBookmarksLink
-                      .save import
-                        input(type="button" onclick="importBookmarks(document.getElementById('importBookmarksLink').value)")
-                  i(class="fa fa-share-alt" aria-hidden="true")#exportBookmarks
-                    input(type="button")
-                    .dropdownCategories
-                      ul
-                        li(onclick = "exportBookmarks(this.innerHTML)") all
-                        li(onclick = "exportBookmarks(this.innerHTML)") social
-                        li(onclick = "exportBookmarks(this.innerHTML)") design
             .links
                 ul.gridster#bookmarks
       include ./includes/editlink.jade
       include ./includes/add_tag.jade
       include ./includes/search_img.jade
       include ./includes/upload.jade
-      .addbutton
-        input(type="button" onclick="openAddlinkWindow()")
-        svg(style="width:20px;height:20px" viewBox="0 0 24 24")
-          path(fill="#000000" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z")
+      .globalButtons
+        .importButton
+          i(class="fa fa-download" aria-hidden="true")#importBookmarks
+            input(type="button")
+            .dropdownInputField
+              label import link
+              input(type="text")#importBookmarksLink
+              .save import
+                input(type="button" onclick="importBookmarks(document.getElementById('importBookmarksLink').value)")
+        .exportButton
+          i(class="fa fa-share-alt" aria-hidden="true")#exportBookmarks
+            input(type="button")
+            .dropdownCategories
+              ul
+                li(onclick = "exportBookmarks(this.innerHTML)") all
+                li(onclick = "exportBookmarks(this.innerHTML)") social
+                li(onclick = "exportBookmarks(this.innerHTML)") design
+        .addbutton
+          input(type="button" onclick="openAddlinkWindow()")
+          svg(style="width:20px;height:20px" viewBox="0 0 24 24")
+            path(fill="#000000" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z")
     include ./includes/script.jade
