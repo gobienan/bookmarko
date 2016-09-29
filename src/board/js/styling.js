@@ -85,7 +85,7 @@ $(document).click(function(e) {
     } else if (!$(target).is('nav') && !$(target).parents().is('nav')) {
         $("#board").removeClass("push");
         $("nav").removeClass("active");
-        $("body").removeClass("overflow_hidden");
+        addBodyScroll();
     }
 });
 

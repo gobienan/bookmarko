@@ -2,11 +2,11 @@ doctype html
 html
     include ./includes/head.jade
     body
-      #preloader(style='visibility: hidden;')
+      #preloader(style='visibility: visible;')
         #status
           img(src="../img/svg-loaders/oval.svg")
       include ./includes/navigation.jade
-      #board(style='visibility: visible;')
+      #board(style='visibility: hidden;')
         .background
         include ./includes/header.jade
         input(type="hidden" name="picture" role="uploadcare-uploader")

@@ -29,7 +29,8 @@
         .thumbnail.small
           span
             form(id="upload" method="post" action="../php/upload.php" enctype="multipart/form-data")
-              .dragAndDrop#drop drag & drop a logo here
+              .dragAndDrop#drop
+              p drag & drop a logo here
               input(type="file" value="or choose file" name="upl" multiple)
             .browse_logo
               input(type="button" onclick="openSearchImgWindow()")
