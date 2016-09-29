@@ -7,7 +7,6 @@ application.windows64
 application.macosx
 
 prepros.cfg
-/node_modules/
 /wireframe/
 /upload/
 /php/
