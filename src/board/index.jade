@@ -2,11 +2,11 @@ doctype html
 html
     include ./includes/head.jade
     body
-      #preloader(style='visibility: visible;')
+      #preloader(style='visibility: hidden;')
         #status
           img(src="../img/svg-loaders/oval.svg")
       include ./includes/navigation.jade
-      #board(style='visibility: hidden;')
+      #board(style='visibility: visible;')
         .background
         include ./includes/header.jade
         input(type="hidden" name="picture" role="uploadcare-uploader")
@@ -16,21 +16,8 @@ html
                     li.category.active
                         a(href="#") all
                 .hr
-                .importExportButtons
-                  i(class="fa fa-download" aria-hidden="true")#importBookmarks
-                    input(type="button")
-                    .dropdownInputField
-                      label import link
-                      input(type="text")#importBookmarksLink
-                      .save import
-                        input(type="button" onclick="importBookmarks(document.getElementById('importBookmarksLink').value)")
-                  i(class="fa fa-share-alt" aria-hidden="true")#exportBookmarks
-                    input(type="button")
-                    .dropdownCategories
-                      ul
-                        li(onclick = "exportBookmarks(this.innerHTML)") all
-                        li(onclick = "exportBookmarks(this.innerHTML)") social
-                        li(onclick = "exportBookmarks(this.innerHTML)") design
+                i(class="fa fa-share-alt" aria-hidden="true")
+                  input(type="button")
             .links
                 ul.gridster#bookmarks
       include ./includes/editlink.jade

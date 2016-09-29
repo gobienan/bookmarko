@@ -79,7 +79,7 @@ function slideThroughPages() {
     nextNavigation.addClass("active");
     var pos = next.attr("pos");
     $('.sections li#pos_' + pos).addClass("active");
-    if (pos === 0) {
+    if (pos == 0) {
         clearTimeout(refreshIntervalPages);
     } else if (pos == 1) {
         $("section#customize .headline").addClass("active");

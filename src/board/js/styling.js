@@ -81,9 +81,11 @@ $(document).click(function(e) {
     if ($(target).is('#hamburger')) {
         $("#board").addClass("push");
         $("nav").addClass("active");
+        removeBodyScroll();
     } else if (!$(target).is('nav') && !$(target).parents().is('nav')) {
         $("#board").removeClass("push");
         $("nav").removeClass("active");
+        $("body").removeClass("overflow_hidden");
     }
 });
 

@@ -1,0 +1,110 @@
+.globalButtons
+  position: fixed
+  display: flex
+  right: 0
+  bottom: 0
+  .addbutton,.importButton,.exportButton
+    cursor: pointer
+    display: flex
+    position: relative
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    float: right
+    width: 40px
+    height: 40px
+    margin: 15px
+    border-radius: 50%
+    background-color: white
+    box-shadow: 2px 2px 20px 2px rgba(0, 0, 0, .1)
+    z-index: 0
+    svg
+      transition: all .2s ease-in-out
+      path
+        fill: $color_2
+  .importButton,.exportButton
+    cursor: default
+    i
+      padding: 10px
+      position: relative
+      &#exportBookmarks
+        &:hover,&:focus
+          .dropdownCategories
+            opacity: 1
+            transform: rotateX(0deg)
+            z-index: 99
+            visibility: visible
+      &#importBookmarks
+        &:hover,&:focus
+          .dropdownInputField
+            opacity: 1
+            transform: rotateX(0deg)
+            z-index: 99
+            visibility: visible
+      .dropdownCategories,.dropdownInputField
+        visibility: hidden
+        transition: all .2s ease-in-out
+        position: absolute
+        background-color: white
+        bottom: 60px
+        left: -90px
+        padding: 10px
+        z-index: -1
+        box-shadow: 0 0 10px 0 rgba(0,0,0,.3)
+        border-radius: 3px
+        transform-origin: bottom
+        transform: rotateX(20deg)
+        opacity: 0
+        &::before
+          display: block
+          content: " "
+          bottom: -10px
+          left: 97px
+          position: absolute
+          width: 0
+          height: 0
+          border-style: solid
+          border-width: 0px 10px 10px 10px
+          border-color: transparent transparent white transparent
+          transform: rotate(180deg)
+        &.dropdownCategories
+          left: -35px
+          &::before
+            left: 42px
+          ul
+            list-style: none
+            display: flex
+            flex-direction: column
+            align-items: baseline
+            margin: 0
+            padding: 0
+            li
+              cursor: pointer
+              color: $color_4
+              font-weight: 700
+              font-size: 14px
+              font-family: "Raleway"
+              transition: all .2s ease-in-out
+              padding: 10px 20px
+              &:hover
+                color: black
+        &.dropdownInputField
+          label
+            font-family: "Raleway"
+            font-weight: 700
+            font-size: 14px
+            color: $color_4
+            padding-bottom: 5px
+          input#importBookmarksLink
+            color: $color_2
+            padding: 5px
+            margin-top: 10px
+            border: solid 1px rgba($color_2, .2)
+          .save
+            margin-top: 10px
+            font-size: 14px
+            font-family: "Raleway"
+            position: relative
+            width: 80px
+            height: 40px
+            float: right

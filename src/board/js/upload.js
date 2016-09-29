@@ -50,9 +50,8 @@ $(function() {
             } else {
                 data.context.find(".progressbar").addClass("done");
                 img_url = JSON.parse(data.result).src;
-                var dropZone = $('#drop');
-                dropZone.parent().parent().parent().removeClass('hover');
-                $("#bookmarkInputValues #bookmark_thumbail .thumbnail").css("background-image", "url('"+img_url+"')");
+                $("#bookmarkInputValues #bookmark_thumbail img").attr("src", img_url);
+                $("#bookmarkInputValues #bookmark_thumbail img").css("display", "block");
             }
         },
         fail: function(e, data) {
@@ -77,12 +76,12 @@ $(function() {
                 node = node.parentNode;
             } while (node !== null);
             if (found) {
-                dropZone.parent().parent().parent().addClass('hover');
+                dropZone.addClass('hover');
             } else {
-                dropZone.parent().parent().parent().removeClass('hover');
+                dropZone.removeClass('hover');
             }
         });
-        dropZone.parent().parent().parent().removeClass('hover');
+        dropZone.removeClass('hover');
     });
     // Helper function that formats the file sizes
     function formatFileSize(bytes) {

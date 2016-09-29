@@ -63,7 +63,6 @@ function addBookmark() {
             values.id = (data);
             widget = getWidgetSize(values.size);
             gridster.add_widget(addBookmarkToDom(values), widget.x, widget.y);
-            updatePosition();
             closeEditlinkWindow();
         },
         error: function(xhr, desc, err) {
@@ -100,6 +99,7 @@ function deleteBookmark(removeButton) {
  */
 function updatePosition() {
     $("#bookmarks li").each(function() {
+        $(this).css("transition", "all .2s ease");
         var id = $(this).attr("id");
         var x_pos = $(this).attr("data-col");
         var y_pos = $(this).attr("data-row");
@@ -163,10 +163,7 @@ function updateSize() {
  * Entfernt Thumbnail
  */
 function deleteThumbnail(removeButton) {
-    // input -> delete -> li
-    var src = $(removeButton).parent().parent().css("background-image");
-    src = src.replace("url(\"", "").replace("\")", "");
-    src = src.substring(src.lastIndexOf("/"), src.length);
+    var src = $(removeButton).parent().find(img).attr("src");
     $.ajax({
         url: '../php/action.php',
         type: 'post',
@@ -175,12 +172,8 @@ function deleteThumbnail(removeButton) {
             'user': user,
             'src': src
         },
-        success: function(e, data) {
-            if (JSON.parse(e).status == "error") {
-                warning("Sorry buddy..you are not allowed to delete this one");
-            } else {
-                $(removeButton).parent().parent().css("display", "none");
-            }
+        success: function(status) {
+            $(removeButton).parent().find(img).attr("src", "");
         },
         error: function(xhr, desc, err) {
             console.log(xhr);
@@ -223,8 +216,7 @@ function getBookmarkInputValues() {
     data.url = parseUrl($("#bookmarkInputValues #url").val());
     data.cat = $("#bookmarkInputValues #category").val();
     data.size = $("#bookmarkInputValues #thumbnail_size li.active").attr("size");
-    data.img = $("#bookmarkInputValues #bookmark_thumbail .thumbnail").css("background-image");
-    data.img = data.img.replace("url(\"", "").replace("\")", "");
+    data.img = $("#bookmarkInputValues #bookmark_thumbail img").attr("src");
     for (var property in data) {
         if (data.hasOwnProperty(property)) {
             if ((data[property]) === "" && property != "id" && property != "img") {
@@ -266,7 +258,8 @@ function resetInputValues() {
             $(this).addClass("active");
         }
     });
-    $("#bookmarkInputValues #bookmark_thumbail .thumbnail").css("background-image", "");
+    $("#bookmarkInputValues #bookmark_thumbail img").css("display", "none");
+    $("#bookmarkInputValues #bookmark_thumbail img").attr("src", " ");
     $("#bookmarkInputValues #bookmark_thumbail .thumbnail").removeClass().addClass("thumbnail small");
 }
 
@@ -279,7 +272,7 @@ function fillInputFields(id) {
     var url = $(selectedBookmark + " a").attr("href");
     var cat = $(selectedBookmark).attr("category");
     var size = $(selectedBookmark).attr("size");
-    var imgUrl = $(selectedBookmark + " .thumbnail").css("background-image");
+    var img_url = $(selectedBookmark + " .thumbnail").css("background-image");
     $("#bookmarkInputValues").attr("bmid", id);
     $("#bookmarkInputValues #titel").val(titel);
     $("#bookmarkInputValues #url").val(url);
@@ -290,10 +283,11 @@ function fillInputFields(id) {
             $(this).addClass("active");
         }
     });
-    if (imgUrl === undefined || imgUrl == " " || imgUrl === "" || imgUrl == "none") {
-        $("#bookmarkInputValues #bookmark_thumbail .thumbnail").css("background-image", "");
+    if (img_url === undefined || img_url == " " || img_url === "" || img_url == "none") {
+        $("#bookmarkInputValues #bookmark_thumbail img").css("display", "none").attr("src", "");
     } else {
-        $("#bookmarkInputValues #bookmark_thumbail .thumbnail").css("background-image", imgUrl);
+        img_url = img_url.replace("url(\"", "").replace("\")", "");
+        $("#bookmarkInputValues #bookmark_thumbail img").attr("src", img_url).css("display", "block");
     }
     $("#bookmarkInputValues #bookmark_thumbail .thumbnail").removeClass().addClass("thumbnail " + getCorrespondingSizeToInt(size));
     $('.underline').css("width", $('#titel').val().length * 25 + "px");
@@ -315,18 +309,17 @@ function updateDomBookmark(values) {
     $(selectedBookmark + " a").attr("href", values.url);
     $(selectedBookmark).attr("category", values.cat);
     $(selectedBookmark).attr("size", values.size);
-    if (values.img != " " && values.img !== "" && values.img !== undefined && values.img !== "none") {
+    if (values.img != " " && values.img !== "" && values.img !== undefined) {
         $(selectedBookmark + " .details").removeClass("active");
-        $(selectedBookmark + " .details p").html("");
-        $(selectedBookmark + " .thumbnail").css("background-image", "url('" + values.img + "')");
+        $(selectedBookmark + " .details").html("");
     } else {
         $(selectedBookmark + " .details p").html(values.titel);
-        $(selectedBookmark + " .details").addClass("active");
-        $(selectedBookmark + " .thumbnail").css("background-image", "");
     }
     if (values.img === "") {
-
-    } else {}
+        $(selectedBookmark + " .thumbnail").css("background-image", "");
+    } else {
+        $(selectedBookmark + " .thumbnail").css("background-image", "url('" + values.img + "')");
+    }
     $(selectedBookmark).removeClass("small").removeClass("wide").removeClass("big");
     $(selectedBookmark).addClass(getCorrespondingSizeToInt(values.size));
     widget = getWidgetSize(values.size);
@@ -349,7 +342,7 @@ function addBookmarksToDom(data) {
         values.id = val.id;
         values.titel = val.titel;
         values.url = val.url;
-        values.size = val.size;
+        values.size = valsize;
         values.cat = val.category;
         if (val.img === undefined) {
             values.img = " ";
@@ -390,11 +383,11 @@ function addBookmarkToDom(values) {
     var deleteButton = "<div class='delete'><input type='button' onclick='deleteBookmark(this)'></div>";
     var thumbnail;
     var details;
-    if (values.img == " " || values.img === "" || values.img === undefined || values.img === "none") {
+    if (values.img == " " || values.img === "" || values.img === undefined) {
         details = "<div class='details active'><p>" + values.titel + "</p></div>";
         thumbnail = "<div class='thumbnail'><img></div>";
     } else {
-        details = "<div class='details'><p></p></div>";
+        details = "<div class='details'></div>";
         imageurl = "background-image:url('" + values.img + "')";
         thumbnail = "<div class='thumbnail' style=" + imageurl + "><img src=''></div>";
     }
@@ -450,13 +443,10 @@ function getWidgetSize(size) {
  */
 function changeBookmarkThumbnail(elem) {
     closeSearchImgWindow();
-    var li = $(elem).parent().parent();
-    var imgUrl = $(li).css("background-image");
-    if (imgUrl === undefined || imgUrl == " " || imgUrl === "" || imgUrl == "none") {
-        $("#bookmarkInputValues #bookmark_thumbail img").css("display", "none").attr("src", "");
-    } else {
-        $("#bookmarkInputValues #bookmark_thumbail .thumbnail").css("background-image", imgUrl);
-    }
+    var li = $(elem).parent();
+    var img_url = $(li).children("img").attr("src");
+    $("#bookmarkInputValues #bookmark_thumbail img").attr("src", img_url);
+    $("#bookmarkInputValues #bookmark_thumbail img").css("display", "block");
 }
 
 /**
@@ -473,21 +463,15 @@ function addBookmarkThumbnailsToDom(values) {
             if (i == 1) {
                 addClass = "wide";
             }
+            var accept = "<div class='accept'><div class='icon'><i aria-hidden='true' class='fa fa-check'></i></div>";
             var selectButton = "<input type='button' onclick='changeBookmarkThumbnail(this)'>";
-            var deleteButton = "<div class='delete'><input type='button' onclick='deleteThumbnail(this)'></div>";
-            var accept = "<div class='accept'>" + selectButton + "<div class='icon'><i aria-hidden='true' class='fa fa-check'></i></div>";
-            var thumbnail = "<img src=''>";
-            imageurl = "background-image:url('" + entry + "')";
+            var thumbnail = "<img src='" + entry + "'>";
             var titel = entry.split('/');
-            $("#thumbnails").append("<li titel='" + titel + "' class='" + addClass + "' style=" + imageurl + ">" + thumbnail + deleteButton + accept + "</li>");
+            $("#thumbnails").append("<li titel='" + titel + "' class='" + addClass + "'>" + selectButton + thumbnail + accept + "</li>");
         });
     });
 }
 
-function removeBookmarkThumbnail(elem) {
-    //delete_logo->span->thumbnail
-    $(elem).parent().parent().parent().css("background-image", "");
-}
 
 function parseUrl(url) {
     if (url !== "") {
@@ -512,59 +496,4 @@ function isThere(theUrl) {
         },
         async: false
     });
-}
-
-function exportBookmarks(cat) {
-    category = cat;
-    $.ajax({
-        url: '../php/action.php',
-        type: 'post',
-        data: {
-            'action': 'encryptForExport',
-            'user': user,
-            'category': category
-        },
-        success: function(data, status) {
-            var values = JSON.parse(data);
-            copyToClipboard(values[0] + "&" + values[1]);
-        },
-        error: function(xhr, desc, err) {
-            console.log(xhr);
-            console.log("Details: " + desc + "\nError:" + err);
-        }
-    }); // end ajax call
-
-}
-$("#importBookmarksLink").keyup(function(e) {
-    var val = this.value;
-    if (e.keyCode == 13) {
-        importBookmarks(val);
-    }
-});
-
-function importBookmarks(val) {
-    if (val !== "") {
-        $.ajax({
-            url: '../php/action.php',
-            type: 'post',
-            data: {
-                'user': user,
-                'action': 'importBookmarks',
-                'string': val
-            },
-            success: function(data, status) {
-                addBookmarksToDom(data);
-                $("#importBookmarksLink").val("");
-                updatePosition();
-            },
-            error: function(xhr, desc, err) {
-                console.log(xhr);
-                console.log("Details: " + desc + "\nError:" + err);
-            }
-        }); // end ajax call
-    }
-}
-
-function copyToClipboard(text) {
-    window.prompt("Copy to clipboard: Ctrl+C, Enter", text);
 }
