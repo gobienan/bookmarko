@@ -3,6 +3,8 @@ var user;
 var gridster;
 var m;
 var finishedLoadingBookmarks = false;
+var restoreBookmarkboolean = false;
+var restoreTimer;
 $(function() {
     if (!init) {
         init = true;

@@ -5731,6 +5731,8 @@ var user;
 var gridster;
 var m;
 var finishedLoadingBookmarks = false;
+var restoreBookmarkboolean = false;
+var restoreTimer;
 $(function() {
     if (!init) {
         init = true;
@@ -6136,24 +6138,39 @@ function addBookmark() {
 
 function deleteBookmark(removeButton) {
     var bmid = $(removeButton).parent().parent().attr("id");
-    $.ajax({
-        url: '../php/action.php',
-        type: 'post',
-        data: {
-            'action': 'removeBookmark',
-            'user': user,
-            'id': bmid
-        },
-        success: function(status) {
-            //removeBookmarkFromDom(bmid);
-            $("#bookmarks li#" + bmid).addClass("remove");
-            gridster.remove_widget("#bookmarks li#" + bmid);
-        },
-        error: function(xhr, desc, err) {
-            console.log(xhr);
-            console.log("Details: " + desc + "\nError:" + err);
-        }
-    }); // end ajax call
+    $("#bookmarks li#" + bmid).toggleClass("remove").css("display","none");
+    var restoreTimer = setTimeout(function() {
+        if (!restoreBookmarkboolean) {
+            $.ajax({
+                url: '../php/action.php',
+                type: 'post',
+                data: {
+                    'action': 'removeBookmark',
+                    'user': user,
+                    'id': bmid
+                },
+                success: function(status) {
+                    //removeBookmarkFromDom(bmid);
+                    console.log("removedBookmark");
+                    $("#bookmarks li#" + bmid).addClass("remove");
+                    restoreBookmarkboolean = false;
+                },
+                error: function(xhr, desc, err) {
+                    console.log(xhr);
+                    console.log("Details: " + desc + "\nError:" + err);
+                }
+            });
+        } else {
+            var li = $("#bookmarks li#" + bmid);
+            var size = $(li).attr("size");
+            var position_x = $(li).attr("data-col");
+            var position_y = $(li).attr("data-row");
+            //gridster.add_widget( $(li).html(), size, size, position_x, position_y );
+            $("#bookmarks li#" + bmid).toggleClass("remove").css("display","flex");
+            console.log("restoredBookmark");
+            restoreBookmarkboolean = false;
+        } // end ajax call
+    }, 5000);
 }
 
 /**
@@ -6628,6 +6645,11 @@ function importBookmarks(val) {
 
 function copyToClipboard(text) {
     window.prompt("Copy to clipboard: Ctrl+C, Enter", text);
+}
+
+function restoreBookmark() {
+    restoreBookmarkboolean = true;
+    clearTimeout(restoreTimer);
 }
 
 $("#bookmarkSearchField").keyup(function(e) {

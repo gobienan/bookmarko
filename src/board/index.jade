@@ -22,6 +22,9 @@ html
       include ./includes/add_tag.jade
       include ./includes/search_img.jade
       include ./includes/upload.jade
+      .undoButton
+        i(class="fa fa-undo" aria-hidden="true")
+        input(type="button" onclick="restoreBookmark()")
       .globalButtons
         .importButton
           i(class="fa fa-download" aria-hidden="true")#importBookmarks
