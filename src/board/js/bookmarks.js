@@ -75,39 +75,44 @@ function addBookmark() {
 
 function deleteBookmark(removeButton) {
     var bmid = $(removeButton).parent().parent().attr("id");
-    $("#bookmarks li#" + bmid).toggleClass("remove").css("display","none");
-    var restoreTimer = setTimeout(function() {
+    $("#bookmarks li#" + bmid).toggleClass("remove").css("display", "none");
+    $(".undoButton").addClass("active");
+    var restoreTimer = setInterval(function() {
         if (!restoreBookmarkboolean) {
-            $.ajax({
-                url: '../php/action.php',
-                type: 'post',
-                data: {
-                    'action': 'removeBookmark',
-                    'user': user,
-                    'id': bmid
-                },
-                success: function(status) {
-                    //removeBookmarkFromDom(bmid);
-                    console.log("removedBookmark");
-                    $("#bookmarks li#" + bmid).addClass("remove");
-                    restoreBookmarkboolean = false;
-                },
-                error: function(xhr, desc, err) {
-                    console.log(xhr);
-                    console.log("Details: " + desc + "\nError:" + err);
-                }
-            });
+            setTimeout(function() {
+                $.ajax({
+                    url: '../php/action.php',
+                    type: 'post',
+                    data: {
+                        'action': 'removeBookmark',
+                        'user': user,
+                        'id': bmid
+                    },
+                    success: function(status) {
+                        //removeBookmarkFromDom(bmid);
+                        console.log("removedBookmark");
+                        $("#bookmarks li#" + bmid).addClass("remove");
+                        restoreBookmarkboolean = false;
+                        $(".undoButton").removeClass("active");
+                    },
+                    error: function(xhr, desc, err) {
+                        console.log(xhr);
+                        console.log("Details: " + desc + "\nError:" + err);
+                    }
+                });
+            }, 5000);
         } else {
             var li = $("#bookmarks li#" + bmid);
             var size = $(li).attr("size");
             var position_x = $(li).attr("data-col");
             var position_y = $(li).attr("data-row");
             //gridster.add_widget( $(li).html(), size, size, position_x, position_y );
-            $("#bookmarks li#" + bmid).toggleClass("remove").css("display","flex");
+            $("#bookmarks li#" + bmid).toggleClass("remove").css("display", "flex");
             console.log("restoredBookmark");
             restoreBookmarkboolean = false;
-        } // end ajax call
-    }, 5000);
+            $(".undoButton").removeClass("active");
+        }
+    }, 100);
 }
 
 /**

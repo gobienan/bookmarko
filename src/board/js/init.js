@@ -5,6 +5,9 @@ var m;
 var finishedLoadingBookmarks = false;
 var restoreBookmarkboolean = false;
 var restoreTimer;
+var doit;
+var wBD;
+var wM;
 $(function() {
     if (!init) {
         init = true;
@@ -88,6 +91,42 @@ function initGridster() {
         }).data('gridster');
     }
 }
+$(window).resize(function() {
+    clearTimeout(doit);
+    doit = setTimeout(function() {
+        widgetOptions = checkWidth();
+        wBDNew = widgetOptions[0];
+        wMNew = widgetOptions[1];
+        if (wBDNew != wBD) {
+            var bookmarks = [];
+            $("#bookmarks li").each(function(i) {
+                bookmarks[i] = $(this);
+            });
+            //gridster.remove_all_widgets();
+            gridster = $("#bookmarks").gridster({
+                widget_margins: [wM, wM],
+                widget_base_dimensions: [wBD, wBD],
+                min_cols: 5,
+                max_cols: 9,
+                draggable: {
+                    start: function() {
+                        $("#bookmarks li").each(function() {
+                            //  $(this).css("transition", "none");
+                            $(this).find('a').css("z-index", "-1");
+                        });
+                    },
+                    stop: function() {
+                        updatePosition();
+                        $("#bookmarks li").each(function() {
+                            $(this).find('a').css("z-index", "1");
+                            $(this).removeClass("player-revert");
+                        });
+                    }
+                }
+            }).data('gridster');
+        }
+    }, 500);
+});
 
 function checkWidth() {
     var wBD;

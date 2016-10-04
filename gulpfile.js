@@ -22,6 +22,8 @@ var password = '2v#8)Xydxi;N';
 
 var srcFolders = {
     boardJS: [
+        './src/**/js/jquery.js',
+        './src/**/js/jquery-ui.js',
         './src/**/js/jquery.iframe-transport.js',
         './src/**/js/jquery.fileupload.js',
         './js/googleAnalytics.js',
@@ -36,6 +38,7 @@ var srcFolders = {
         './src/board/js/keyEvents.js'
     ],
     landingpageJS: [
+        './src/**/js/jquery.js',
         './src/**/googleAnalytics.js',
         './src/**/js/cookie.js',
         './src/landingpage/js/init.js',
@@ -90,7 +93,7 @@ gulp.task('scripts', function() {
             base: './public/'
         })
         .pipe(plumber())
-        //.pipe(uglify())
+        .pipe(uglify())
         .pipe(concat('scripts_board.js'))
         .pipe(gulp.dest('./public/js/'))
         .pipe(reload({

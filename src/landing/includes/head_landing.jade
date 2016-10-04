@@ -1,15 +1,18 @@
 head
-	title Bookmarko
-	script(src="//code.jquery.com/jquery-1.11.3.js")
-	script(src="//code.jquery.com/ui/1.11.4/jquery-ui.js")
-	script(src="../js/scripts.js")
-	<script>var user=decodeURIComponent(escape(getCookie("mail")));$.ajax({async:false,'global': false,url:"../php/action.php",type:"post",data:{action:"checkLoginStauts",user:user,from:"landingpage"},success:function(a,b){""!==a&&(window.location=a)},error:function(a,b,c){console.log(a),console.log("Details: "+b+"\nError:"+c)}});</script>
+	title Bookmarko - A New Way To Manage Your Bookmarks
+	script(type="text/javascript" async src="../js/scripts.js")
 	meta(charset="UTF-8")
 	meta(content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport")
 	link(rel="stylesheet",href="../css/style_landing.css")
 	link(rel="stylesheet",  media='(max-width: 1200px)', href="../css/style_landing_medium.css")
-	meta(property="og:title" content="Bookmarko | A Fancy Way To Manage Your Bookmarks.")
+	meta(property="og:title" content="Bookmarko - A New Way To Manage Your Bookmarks")
+	meta(name="description" content="Manage your bookmarks across all browsers. Change thumbnail, position, size or category of your bookmarks. Make it work the way you do...")
+	meta(name="author" content="Gobie Nanthakumar")
+	meta(name="date" content="2016-11-03")
 	//link(rel="stylesheet",  media='(max-width: 1200px)', href="./css/style_small.css")
-	link(href='https://fonts.googleapis.com/css?family=Raleway:200,400,500,700' rel='stylesheet' type='text/css')
-	link(href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet")
+	link(href='https://fonts.googleapis.com/css?family=Raleway:200,400,700' rel='stylesheet' type='text/css')
+	link(href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css')
 	link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css")
+	<script>var user=decodeURIComponent(escape(getCookie("mail")));$.ajax({async:false,'global': false,url:"../php/action.php",type:"post",data:{action:"checkLoginStauts",user:user,from:"landingpage"},success:function(a,b){""!==a&&(window.location=a)},error:function(a,b,c){console.log(a),console.log("Details: "+b+"\nError:"+c)}});</script>
+	<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create', 'UA-79153924-1', 'auto');ga('send', 'pageview');</script>
+	<script async src='https://www.google-analytics.com/analytics.js'></script>
