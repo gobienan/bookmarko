@@ -13,16 +13,11 @@ A site to manage your Bookmarks in a new way :3
 
 ## Donate
 
-Help me to pay my coffee
-### PayPal
-
-[![PayPal](https://raw.githubusercontent.com/deweyapp/dewey-website/master/docs/images/donate.png "PayPal Donation")](https://paypal.me/GobieNa)
-
 ## Creator
 
 ### Gobie Nanthakumar - Development and Design
 
-- [Facebook](https://www.facebook.com/gobie.na)
+- [LinkedIn](https://www.linkedin.com/in/gobie-nanthakumar/)
  
 ## License
 
